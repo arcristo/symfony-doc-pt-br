@@ -74,12 +74,12 @@ Bundles da Aplicação
 ~~~~~~~~~~~~~~~~~~~~
 
 Quando o Symfony 2.0 foi lançado, a maioria dos desenvolvedores naturalmente adotou a forma
-de dividir as aplicações em módulos lógicos do Symfony 1.x. É por isso que muitas apps Symfony
+de dividir as aplicações em módulos lógicos do Symfony 1.x. É por isso que muitas aplicações Symfony
 usam bundles para dividir seu código em recursos lógicos: UserBundle,
 ProductBundle, InvoiceBundle, etc.
 
 Mas um bundle *deve* ser algo que pode ser reutilizado como um software
-autônomo. Se o UserBundle não pode ser usado *"como está"* em outras apps
+autônomo. Se o UserBundle não pode ser usado *"como está"* em outras aplicações
 Symfony, então não deve ser seu próprio bundle. Além disso, se o InvoiceBundle depende
 do ProductBundle, então não há nenhuma vantagem em ter dois bundles separados.
 
