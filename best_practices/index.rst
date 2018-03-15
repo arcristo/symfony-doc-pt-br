@@ -1,5 +1,5 @@
-Melhores Práticas Oficiais do Symfony
-=====================================
+Práticas Recomendadas Oficiais do Symfony
+=========================================
 
 .. toctree::
     :hidden:
