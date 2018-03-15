@@ -1,97 +1,106 @@
-﻿.. index::
-   single: Melhores Práticas para o Framework Symfony
+.. index::
+   single: Melhores Práticas do Framework Symfony
 
-As Melhores Práticas para o Framework Symfony
-=============================================
+As Melhores Práticas do Framework Symfony
+=========================================
 
-O framework Symfony é bem conhecido por ser *realmente* flexível e é usado
-para construir micro-sites, aplicativos corporativos que lidam com bilhões de conexões
+O Framework Symfony é bem conhecido por ser *realmente* flexível e é usado
+para construir micro-sites, aplicações corporativas que lidam com bilhões de conexões
 e até mesmo como base para *outros* frameworks. Desde o seu lançamento, em julho de 2011,
-a comunidade tem aprendido muito sobre o que é possível e como fazer as coisas *melhor*.
+a comunidade tem aprendido muito sobre o que é possível e como tornar as coisas *melhores*.
 
-Estes recursos da comunidade - como posts de blogs ou apresentações - criaram
-um conjunto de recomendações não-oficiais para o desenvolvimento de aplicações Symfony.
+Esses recursos da comunidade - como postagens de blogs ou apresentações - criaram
+um conjunto não-oficial de recomendações para o desenvolvimento de aplicações Symfony.
 Infelizmente, muitas dessas recomendações são desnecessárias para aplicações web.
-Na maior parte do tempo, elas desnecessariamente complicam as coisas e não seguem a
+Na maioria das vezes, elas complicam desnecessariamente as coisas e não seguem a
 filosofia pragmática original do Symfony.
 
-Do que se trata este Guia?
---------------------------
+Sobre o que é este Guia?
+------------------------
 
-Este guia destina-se a corrigir isso, descrevendo as **melhores práticas para o desenvolvimento de
-aplicações web com o framework full-stack Symfony**. Essas são as melhores práticas que
-se encaixam com a filosofia do framework como previsto pelo seu criador original
+Este guia visa corrigir isso, descrevendo as **melhores práticas para desenvolver
+aplicações web com o framework fullstack Symfony**. Estas são práticas recomendadas que
+se encaixam na filosofia do framework como imaginada pelo seu criador original
 `Fabien Potencier`_.
 
 .. note::
 
     **Melhor prática** é um substantivo que significa *"um procedimento bem definido que é
-    conhecido por produzir resultados quase ótimos"*. E é exatamente isso o que esse
-    guia visa proporcionar. Mesmo que você não concorde com todas as recomendações,
+    conhecido por produzir resultados quase ótimos"*. E é exatamente isso que este
+    guia pretende fornecer. Mesmo que você não concorde com todas as recomendações,
     acreditamos que elas irão ajudá-lo a construir ótimas aplicações com menos complexidade.
 
-Esse guia é **especialmente adequado** para:
+Este guia é **especialmente adequado** para:
 
-* Sites e aplicações web desenvolvidas com o framework full-stack Symfony.
+* Sites e aplicações web desenvolvidos com o framework fullstack Symfony.
 
-Para outras situações, esse guia pode ser um bom **ponto de partida** que você pode
-então **estender e encaixar às suas necessidades específicas**:
+Para outras situações, este guia pode ser um bom **ponto de partida** que você pode
+então **ampliar e ajustar às suas necessidades específicas**:
 
-* Bundles compartilhados publicamente à comunidade Symfony;
+* Bundles compartilhados publicamente com a comunidade Symfony;
 * Desenvolvedores avançados ou equipes que criaram seus próprios padrões;
 * Algumas aplicações complexas que têm requisitos altamente personalizados;
 * Bundles que podem ser compartilhados internamente dentro de uma empresa.
 
 Sabemos que velhos hábitos custam a ser eliminados e alguns de vocês ficarão chocados com algumas
-dessas melhores práticas. Mas, seguindo elas, você será capaz de desenvolver
-aplicações rapidamente, com menos complexidade e com a mesma ou até superior qualidade.
-É também de caráter variável que continuará a melhorar.
+dessas melhores práticas. Mas, seguindo elas, você poderá desenvolver
+aplicações mais rapidamente, com menos complexidade e com a mesma ou até superior qualidade.
+É também um alvo em movimento que continuará a melhorar.
 
 Tenha em mente que estas são **recomendações opcionais** que você e sua
 equipe podem ou não seguir para desenvolver aplicações Symfony. Se você quiser
-continuar usando suas próprias melhores práticas e metodologias, pode, naturalmente,
-fazê-lo. O Symfony é suficientemente flexível para se adaptar às suas necessidades. Isso nunca vai
-mudar.
+continuar usando suas próprias práticas recomendadas e metodologias, você pode, claro,
+fazê-lo. O Symfony é flexível o suficiente para se adaptar às suas necessidades. Isso nunca
+mudará.
 
 Para quem é este Livro (Dica: Não é um Tutorial)
 ------------------------------------------------
 
-Qualquer desenvolvedor Symfony, se você é um especialista ou um recém-chegado, pode ler esse
-guia. Mas, uma vez que este não é um tutorial, você vai precisar de alguns conhecimentos básicos de
-Symfony para acompanhar tudo. Se você é totalmente novo no Symfony, bem-vindo!
-Comece com :doc:`O Guia de Início Rápido </quick_tour/the_big_picture>` primeiro.
+Qualquer desenvolvedor Symfony, seja um especialista ou um recém-chegado, pode ler este
+guia. Mas como este não é um tutorial, você precisará de algum conhecimento básico do
+Symfony para acompanhar tudo. Se você é completamente novo no Symfony, bem-vindo! E
+leia os :doc:`Guias de Início Rápido </quick_tour/the_big_picture>` primeiro.
 
-Mantemos deliberadamente esse guia curto. Não vamos repetir explicações que
-você pode encontrar na vasta documentação do Symfony, como discussões sobre injeção de
-dependência ou front controllers. Vamos apenas nos concentrar em explicar como fazer
+Nós deliberadamente mantivemos este guia curto. Não vamos repetir explicações que
+você pode encontrar na vasta documentação do Symfony, como discussões sobre Injeção de
+Dependência ou front controllers. Vamos apenas nos concentrar em explicar como fazer
 o que você já sabe.
 
 A Aplicação
 -----------
 
-Além desse guia, você encontrará um exemplo de aplicação desenvolvida com
-todas essas melhores práticas em mente. **A aplicação é um mecanismo de blog simples**,
-porque isso vai nos permitir concentrar nos conceitos e características do Symfony
-sem ficar enterrado em detalhes difíceis.
+Além deste guia, um exemplo de aplicação chamada `Demo do Symfony`_ foi
+desenvolvido com todas essas práticas recomendadas em mente. Execute este comando para baixar
+a aplicação de demonstração:
 
-Em vez de desenvolver a aplicação passo a passo nesse guia, você encontrará
-snippets de código selecionados através dos capítulos. Por favor, consulte o último capítulo
-desse guia para encontrar mais detalhes sobre essa aplicação e as instruções
-para instalá-la.
+.. code-block:: terminal
+
+    $ composer create-project symfony/symfony-demo
+
+**A aplicação de demonstração é uma engine de blog simples**, porque isso nos permitirá
+focar nos conceitos e características do Symfony sem ficar enterrados em detalhes de
+implementação difíceis. Em vez de desenvolver a aplicação passo-a-passo
+neste guia, você encontrará fragmentos de código selecionados através dos capítulos.
 
 Não Atualize suas Aplicações Existentes
 ---------------------------------------
 
-Depois de ler esse manual, alguns podem estar pensando em refatorar suas
-aplicações Symfony existentes. Nossa recomendação é sólida e clara: **você
-não deve refatorar suas aplicações existentes para cumprir essas melhores
-práticas**. As razões para não fazê-lo são várias:
+Depois de ler este manual, alguns de vocês podem estar pensando em refatorar suas
+aplicações Symfony existentes. Nossa recomendação é sólida e clara: você pode
+usar estas práticas recomendadas para **novas aplicações**, mas **você não deve refatorar
+suas aplicações existentes para cumprir essas práticas recomendadas**. As razões
+para não fazê-lo são várias:
 
 * Suas aplicações existentes não estão erradas, elas apenas seguem um outro conjunto de
-  orientações;
-* A refatoração da base de código completa está propensa a apresentar erros em suas
+  diretrizes;
+* Uma refatoração completa da base de código está propensa a introduzir erros em suas
   aplicações;
 * A quantidade de trabalho gasto com isso poderia ser melhor dedicada a melhorar
-  seus testes ou adicionar funcionalidades que agregam valor real para os usuários finais.
+  seus testes ou adicionar funcionalidades que agreguem valor real para os usuários finais.
+
+----
+
+Próxima: :doc:`/best_practices/creating-the-project`
 
 .. _`Fabien Potencier`: https://connect.sensiolabs.com/profile/fabpot
+.. _`Demo do Symfony`: https://github.com/symfony/demo
