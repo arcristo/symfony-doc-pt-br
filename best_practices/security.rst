@@ -1,26 +1,26 @@
 ﻿Segurança
 =========
 
-Autenticação e Firewalls (ou seja, obter as Credenciais do Usuário)
--------------------------------------------------------------------
+Autenticação e Firewalls (ou seja, Obtendo as Credenciais do Usuário)
+---------------------------------------------------------------------
 
-Você pode configurar o Symfony para autenticar os usuários usando qualquer método que
-desejar e carregar as informações do usuário a partir de qualquer fonte. Esse é um tema complexo,
-mas a `Seção sobre Segurança do Cookbook`_ possui muitas informações sobre isso.
+Você pode configurar o Symfony para autenticar seus usuários usando qualquer método que
+desejar e carregar as informações do usuário a partir de qualquer fonte. Esse é um tema complexo, mas
+o :doc:`guia de Segurança </security>` possui muitas informações sobre isso.
 
 Independentemente das suas necessidades, a autenticação é configurada no ``security.yml``,
 principalmente sob a chave ``firewalls``.
 
 .. best-practice::
 
-    A menos que você tenha dois sistemas de autenticação e usuários legitimamente diferentes
-    (por exemplo, formulário de login para o site principal e um sistema de token somente para sua
-    API), recomendamos ter apenas *uma* entrada firewall com a chave ``anonymous``
+    A menos que você tenha dois sistemas de autenticação e usuários legitimamente
+    diferentes (por exemplo, formulário de login para o site principal e um sistema de token somente para sua
+    API), recomendamos ter apenas *uma* entrada de firewall com a chave ``anonymous``
     habilitada.
 
-A maioria das aplicações tem somente um sistema de autenticação e um conjunto de usuários.
-Por essa razão, você só precisa de *uma* entrada firewall. Há exceções
-claro, especialmente se você tiver seções web e API separadas no seu
+A maioria das aplicações possui apenas um sistema de autenticação e um conjunto de usuários.
+Por esse motivo, você só precisa de *uma* entrada de firewall. Há exceções,
+é claro, especialmente se você tiver seções web e API separadas no seu
 site. Mas o ponto é manter as coisas simples.
 
 Além disso, você deve usar a chave ``anonymous`` no seu firewall. Se
@@ -31,127 +31,127 @@ site (ou talvez quase *todas* as seções), use a área ``access_control``.
 
     Use o encoder ``bcrypt`` para codificar as senhas de seus usuários.
 
-Se os usuários tiverem uma senha, então recomendamos codificá-la usando o encoder ``bcrypt``
-em vez do codificador de hash tradicional SHA-512. As principais vantagens
-do ``bcrypt`` são a inclusão de um valor *salt* para proteger contra ataques
-de rainbow table, e a sua natureza adaptativa, que permite tornar mais lenta para
-permanecer resistente a ataques de força bruta.
+Se os seus usuários tiverem uma senha, recomendamos codificá-la usando o encoder ``bcrypt``,
+em vez do encoder de hashing SHA-512 tradicional. As principais vantagens
+do ``bcrypt`` são a inclusão de um valor de *salt* para proteger contra ataques
+de rainbow table, e a sua natureza adaptativa, que permite torná-lo mais lento para
+permanecer resistente a ataques de busca de força bruta.
 
 Com isso em mente, aqui está a configuração de autenticação da nossa aplicação,
 que utiliza um formulário de login para carregar usuários do banco de dados:
 
 .. code-block:: yaml
 
+    # config/packages/security.yaml
     security:
         encoders:
-            AppBundle\Entity\User: bcrypt
+            App\Entity\User: bcrypt
 
         providers:
             database_users:
-                entity: { class: AppBundle:User, property: username }
+                entity: { class: App\Entity\User, property: username }
 
         firewalls:
             secured_area:
                 pattern: ^/
                 anonymous: true
                 form_login:
-                    check_path: security_login_check
-                    login_path: security_login_form
+                    check_path: login
+                    login_path: login
 
                 logout:
                     path: security_logout
                     target: homepage
 
-    # ... access_control exists, but is not shown here
+    # ... access_control existe, mas não é mostrado aqui
 
 .. tip::
 
-    O código fonte para o nosso projeto contém comentários que explicam cada parte.
+    O código-fonte do nosso projeto contém comentários que explicam cada parte.
 
-Autorização (ou seja, Negar Acesso)
------------------------------------
+Autorização (ou seja, Negando o Acesso)
+---------------------------------------
 
-O Symfony oferece várias maneiras para impor a autorização, incluindo a configuração ``access_control``
-no `security.yml`_, a :ref:`anotação @Security <best-practices-security-annotation>`
-e usar :ref:`isGranted <best-practices-directy-isGranted>` no serviço ``security.context``
+O Symfony oferece várias maneiras de impor a autorização, incluindo a configuração
+``access_control`` no :doc:`security.yaml </reference/configuration/security>`, a
+:ref:`anotação @Security <best-practices-security-annotation>` e o uso de
+:ref:`isGranted <best-practices-directly-isGranted>` no serviço ``security.authorization_checker``
 diretamente.
 
 .. best-practice::
 
-    * Para proteger os padrões de URL gerais, use ``access_control``;
+    * Para proteger padrões gerais de URL, use ``access_control``;
     * Sempre que possível, use a anotação ``@Security``;
-    * Verifique a segurança diretamente no serviço ``security.context`` sempre
+    * Verifique a segurança diretamente no serviço ``security.authorization_checker`` sempre
       que você tiver uma situação mais complexa.
 
 Há também diferentes formas de centralizar a sua lógica de autorização, como
-utilizar um voter de segurança personalizado ou ACL.
+com um voter de segurança personalizado.
 
 .. best-practice::
 
-    * Para as restrições de granulação fina, defina um voter de segurança personalizado;
-    * Para retringir o acesso a *qualquer* objeto para *qualquer * usuário através de uma interface administrativa,
-      use o ACL do Symfony.
+    Defina um voter de segurança personalizado para implementar restrições mais finas.
 
 .. _best-practices-security-annotation:
 
 A Anotação @Security
 --------------------
 
-Para controlar o acesso em uma base controlador-a-controlador, use a anotação
-``@Security`` sempre que possível. É fácil de ler e é colocado de forma consistente
-acima de cada ação.
+Para controlar o acesso num nível de controller a controller, use a anotação
+``@Security`` sempre que possível. Elá é fácil de ler e é colocada de forma consistente
+acima de cada action.
 
-Em nossa aplicação, você precisa do ``ROLE_ADMIN`` a fim de criar um novo post.
-Usando ``@Security``, parecerá com:
+Na nossa aplicação, você precisa do ``ROLE_ADMIN`` para criar um novo post.
+Usando ``@Security``, ficará parecido com:
 
 .. code-block:: php
 
-    use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
     use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+    use Symfony\Component\Routing\Annotation\Route;
     // ...
 
     /**
-     * Displays a form to create a new Post entity.
+     * Exibe um formulário para criar uma nova entidade Post.
      *
      * @Route("/new", name="admin_post_new")
      * @Security("has_role('ROLE_ADMIN')")
      */
-    public function newAction()
+    public function new()
     {
         // ...
     }
 
-Usando expressões para restrições de segurança complexas
+Usando Expressões para Restrições de Segurança Complexas
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Se a sua lógica de segurança for um pouco mais complexa, você pode usar uma `expressão`_
+Se a sua lógica de segurança for um pouco mais complexa, você pode usar uma :doc:`expressão </components/expression_language>`
 dentro de ``@Security``. No exemplo a seguir, um usuário só pode acessar o
-controlador se o seu e-mail corresponde ao valor retornado pelo método
-``getAuthorEmail`` do objeto ``Post``:
+controller se o seu e-mail corresponder ao valor retornado pelo método
+``getAuthorEmail()`` do objeto ``Post``:
 
 .. code-block:: php
 
-    use AppBundle\Entity\Post;
-    use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+    use App\Entity\Post;
     use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+    use Symfony\Component\Routing\Annotation\Route;
 
     /**
      * @Route("/{id}/edit", name="admin_post_edit")
      * @Security("user.getEmail() == post.getAuthorEmail()")
      */
-    public function editAction(Post $post)
+    public function edit(Post $post)
     {
         // ...
     }
 
 Note que isso requer o uso do `ParamConverter`_, que automaticamente
-consulta o objeto ``Post`` e coloca ele no argumento ``$post``. Isso
-é o que torna possível utilizar a variável ``post`` na expressão.
+consulta o objeto ``Post`` e o coloca no argumento ``$post``. Isso
+é o que torna possível usar a variável ``post`` na expressão.
 
-Mas isso tem uma grande desvantagem: uma expressão em uma anotação não pode facilmente
+Isso tem uma grande desvantagem: uma expressão em uma anotação não pode facilmente
 ser reutilizada em outras partes da aplicação. Imagine que você deseja adicionar
-um link em um template que somente será visto pelos autores. Agora, você terá
-que repetir o código de expressão usando a sintaxe Twig:
+um link em um template que só será visto pelos autores. Agora você
+precisará repetir o código da expressão usando a sintaxe do Twig:
 
 .. code-block:: html+jinja
 
@@ -159,12 +159,12 @@ que repetir o código de expressão usando a sintaxe Twig:
         <a href=""> ... </a>
     {% endif %}
 
-A solução mais fácil - se a sua lógica for bastante simples - é adicionar um novo método,
-na entidade ``Post``, que verifica se um determinado usuário é o seu autor:
+A solução mais fácil - se a sua lógica for suficientemente simples - é adicionar um novo método
+à entidade ``Post`` que verifica se um determinado usuário é o seu autor:
 
 .. code-block:: php
 
-    // src/AppBundle/Entity/Post.php
+    // src/Entity/Post.php
     // ...
 
     class Post
@@ -172,7 +172,7 @@ na entidade ``Post``, que verifica se um determinado usuário é o seu autor:
         // ...
 
         /**
-         * Is the given User the author of this Post?
+         * O usuário fornecido é o autor deste post?
          *
          * @return bool
          */
@@ -186,14 +186,15 @@ Agora você pode reutilizar esse método tanto no template quanto na expressão 
 
 .. code-block:: php
 
-    use AppBundle\Entity\Post;
+    use App\Entity\Post;
     use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+    use Symfony\Component\Routing\Annotation\Route;
 
     /**
      * @Route("/{id}/edit", name="admin_post_edit")
      * @Security("post.isAuthor(user)")
      */
-    public function editAction(Post $post)
+    public function edit(Post $post)
     {
         // ...
     }
@@ -204,14 +205,16 @@ Agora você pode reutilizar esse método tanto no template quanto na expressão 
         <a href=""> ... </a>
     {% endif %}
 
-.. _best-practices-directy-isGranted:
+.. _best-practices-directly-isGranted:
+.. _checking-permissions-without-security:
+.. _manually-checking-permissions:
 
-Verificar as Permissões sem o @Security
+Verificando as Permissões sem @Security
 ---------------------------------------
 
-O exemplo acima com o ``@Security`` só funciona porque nós estamos usando o
-:ref:`ParamConverter <best-practices-paramconverter>`, que fornece à expressão
-acesso a variável ``post``. Se você não usar isso, ou tem algum outro
+O exemplo acima com ``@Security`` só funciona porque estamos usando o
+:ref:`ParamConverter <best-practices-paramconverter>`, que dá à expressão
+acesso à variável ``post``. Se você não usá-lo, ou tiver algum outro
 caso de uso mais avançado, você sempre pode fazer a mesma verificação de segurança no PHP:
 
 .. code-block:: php
@@ -219,9 +222,10 @@ caso de uso mais avançado, você sempre pode fazer a mesma verificação de seg
     /**
      * @Route("/{id}/edit", name="admin_post_edit")
      */
-    public function editAction($id)
+    public function edit($id)
     {
-        $post = $this->getDoctrine()->getRepository('AppBundle:Post')
+        $post = $this->getDoctrine()
+            ->getRepository(Post::class)
             ->find($id);
 
         if (!$post) {
@@ -229,76 +233,102 @@ caso de uso mais avançado, você sempre pode fazer a mesma verificação de seg
         }
 
         if (!$post->isAuthor($this->getUser())) {
-            throw $this->createAccessDeniedException();
+            $this->denyAccessUnlessGranted('edit', $post);
         }
+        // código equivalente sem usar o atalho "denyAccessUnlessGranted()":
+        //
+        // use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+        // ...
+        //
+        // if (!$this->get('security.authorization_checker')->isGranted('edit', $post)) {
+        //    throw $this->createAccessDeniedException();
+        // }
 
         // ...
     }
 
-Os Voters de Segurança
-----------------------
+Voters de Segurança
+-------------------
 
-Se a sua lógica de segurança é complexa e não pode ser centralizada num método
-como ``isAuthor()``, você deve aproveitar os voters personalizados. Trata-se de uma ordem
-de magnitude mais fácil do que `ACL's`_ e que fornecerá a flexibilidade que você precisa
-em quase todos os casos.
+Se a sua lógica de segurança é complexa e não pode ser centralizada em um método como
+``isAuthor()``, você deve aproveitar os voters personalizados. Esses são muito mais fáceis que
+:doc:`ACLs </security/acl>` e lhe darão a flexibilidade que você precisa em quase
+todos os casos.
 
 Primeiro, crie uma classe voter. O exemplo a seguir mostra um voter que implementa
-a mesma lógica do ``getAuthorEmail`` você usou acima:
+a mesma lógica de ``getAuthorEmail()`` que você usou acima:
 
 .. code-block:: php
 
-    namespace AppBundle\Security;
+    namespace App\Security;
 
-    use Symfony\Component\Security\Core\Authorization\Voter\AbstractVoter;
+    use App\Entity\Post;
+    use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+    use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
+    use Symfony\Component\Security\Core\Authorization\Voter\Voter;
     use Symfony\Component\Security\Core\User\UserInterface;
 
-    // AbstractVoter class requires Symfony 2.6 or higher version
-    class PostVoter extends AbstractVoter
+    class PostVoter extends Voter
     {
         const CREATE = 'create';
         const EDIT   = 'edit';
 
-        protected function getSupportedAttributes()
+        private $decisionManager;
+
+        public function __construct(AccessDecisionManagerInterface $decisionManager)
         {
-            return array(self::CREATE, self::EDIT);
+            $this->decisionManager = $decisionManager;
         }
 
-        protected function getSupportedClasses()
+        protected function supports($attribute, $subject)
         {
-            return array('AppBundle\Entity\Post');
+            if (!in_array($attribute, [self::CREATE, self::EDIT])) {
+                return false;
+            }
+
+            if (!$subject instanceof Post) {
+                return false;
+            }
+
+            return true;
         }
 
-        protected function isGranted($attribute, $post, $user = null)
+        protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
         {
+            $user = $token->getUser();
+            /** @var Post */
+            $post = $subject; // $subject deve ser uma instância de Post, graças ao método supports
+
             if (!$user instanceof UserInterface) {
                 return false;
             }
 
-            if ($attribute === self::CREATE && in_array('ROLE_ADMIN', $user->getRoles(), true)) {
-                return true;
-            }
+            switch ($attribute) {
+                // se o usuário for um administrador, permita que crie novos posts
+                case self::CREATE:
+                    if ($this->decisionManager->decide($token, ['ROLE_ADMIN'])) {
+                        return true;
+                    }
 
-            if ($attribute === self::EDIT && $user->getEmail() === $post->getAuthorEmail()) {
-                return true;
+                    break;
+
+                // se o usuário for o autor da postagem, permita que edite os posts
+                case self::EDIT:
+                    if ($user->getEmail() === $post->getAuthorEmail()) {
+                        return true;
+                    }
+
+                    break;
             }
 
             return false;
         }
     }
 
-Para habilitar o voter de segurança na aplicação, defina um novo serviço:
-
-.. code-block:: yaml
-
-    # app/config/services.yml
-    services:
-        # ...
-        post_voter:
-            class:      AppBundle\Security\PostVoter
-            public:     false
-            tags:
-               - { name: security.voter }
+Se você estiver usando a :ref:`configuração padrão do services.yaml <service-container-services-load-example>`,
+sua aplicação irá :ref:`configurar automaticamente <services-autoconfigure>` seu voter de
+segurança e injetar uma instância de ``AccessDecisionManagerInterface`` nele graças ao
+:doc:`autowiring </service_container/autowiring>`.
 
 Agora, você pode usar o voter com a anotação ``@Security``:
 
@@ -308,12 +338,12 @@ Agora, você pode usar o voter com a anotação ``@Security``:
      * @Route("/{id}/edit", name="admin_post_edit")
      * @Security("is_granted('edit', post)")
      */
-    public function editAction(Post $post)
+    public function edit(Post $post)
     {
         // ...
     }
 
-Você também pode usar isso diretamente com o serviço ``security.context``, ou
+Você também pode usá-lo diretamente com o serviço ``security.authorization_checker`` ou
 através do atalho ainda mais fácil em um controller:
 
 .. code-block:: php
@@ -321,43 +351,44 @@ através do atalho ainda mais fácil em um controller:
     /**
      * @Route("/{id}/edit", name="admin_post_edit")
      */
-    public function editAction($id)
+    public function edit($id)
     {
-        $post = // query for the post ...
+        $post = ...; // consulta o post
 
-        if (!$this->get('security.context')->isGranted('edit', $post)) {
-            throw $this->createAccessDeniedException();
-        }
+        $this->denyAccessUnlessGranted('edit', $post);
+
+        // ou sem o atalho:
+        //
+        // use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+        // ...
+        //
+        // if (!$this->get('security.authorization_checker')->isGranted('edit', $post)) {
+        //    throw $this->createAccessDeniedException();
+        // }
     }
 
-Saiba mais
+Saiba Mais
 ----------
 
 O `FOSUserBundle`_, desenvolvido pela comunidade Symfony, adiciona suporte para um
-sistema de usuário que utiliza banco de dados no Symfony2. Ele também lida com tarefas comuns como
-registro de usuário e funcionalidade de esqueci senha.
+sistema de usuário baseado em banco de dados no Symfony. Ele também lida com tarefas comuns como
+o registro de usuários e a funcionalidade de senha esquecida.
 
-Ative o `recurso Lembrar Me`_ para permitir que seus usuários continuem logados por
-um longo período de tempo.
+Ative o :doc:`recurso Lembrar-me </security/remember_me>` para
+permitir que seus usuários permaneçam logados por um longo período de tempo.
 
 Ao fornecer suporte ao cliente, às vezes é necessário acessar a aplicação
-como um *outro* usuário para que você possa reproduzir o problema. O Symfony fornece
-a possibilidade de `personificar usuários`_.
+como algum *outro* usuário para que você possa reproduzir o problema. O Symfony fornece
+a capacidade de :doc:`personificar usuários </security/impersonating_user>`.
 
-Se a sua empresa utiliza um método de login de usuário que não é suportado pelo Symfony, você pode
-desenvolver o `seu próprio provedor de usuário`_ e o `seu próprio provedor de autenticação`_.
+Se a sua empresa usa um método de login de usuário que não é suportado pelo Symfony, você pode
+desenvolver :doc:`seu próprio provider de usuário </security/custom_provider>` e
+:doc:`seu próprio provider de autenticação </security/custom_authentication_provider>`.
 
-.. _`Seção sobre Segurança do Cookbook`: http://symfony.com/doc/current/cookbook/security/index.html
-.. _`security.yml`: http://symfony.com/doc/current/reference/configuration/security.html
-.. _`ParamConverter`: http://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html
-.. _`anotação @Security`: http://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/security.html
-.. _`security.yml`: http://symfony.com/doc/current/reference/configuration/security.html
-.. _`voter de segurança`: http://symfony.com/doc/current/cookbook/security/voters_data_permission.html
-.. _`Acces Control List`: http://symfony.com/doc/current/cookbook/security/acl.html
-.. _`ACL's`: http://symfony.com/doc/current/cookbook/security/acl.html
-.. _`expressão`: http://symfony.com/doc/current/components/expression_language/introduction.html
+----
+
+Próxima: :doc:`/best_practices/web-assets`
+
+.. _`ParamConverter`: https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html
+.. _`anotação @Security`: https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/security.html
 .. _`FOSUserBundle`: https://github.com/FriendsOfSymfony/FOSUserBundle
-.. _`recurso Lembrar Me`: http://symfony.com/doc/current/cookbook/security/remember_me.html
-.. _`personificar usuários`: http://symfony.com/doc/current/cookbook/security/impersonating_user.html
-.. _`seu próprio provedor de usuário`: http://symfony.com/doc/current/cookbook/security/custom_provider.html
-.. _`seu próprio provedor de autenticação`: http://symfony.com/doc/current/cookbook/security/custom_authentication_provider.html
