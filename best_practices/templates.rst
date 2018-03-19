@@ -44,7 +44,7 @@ e ``edit_form.html.twig`` ao invés de ``EditForm.html.twig``).
     Use um underscore como prefixo para nomes de templates parciais.
 
 Muitas vezes você deseja reutilizar o código de templates usando a função ``include`` para evitar
-código redundante. Para identificar esses templates parciais facilmente no sistema de arquivos você deve
+código redundante. Para identificar facilmente esses templates parciais no sistema de arquivos você deve
 prefixar os templates parciais e qualquer outro template sem a tag HTML body ou a tag ``extends``
 com um único underscore.
 
