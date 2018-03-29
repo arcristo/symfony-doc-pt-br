@@ -1,463 +1,180 @@
 Panorama Geral
 ==============
 
-Comece a usar o Symfony em 10 minutos! Este capítulo irá orientá-lo através de alguns
-dos conceitos mais importantes por trás do Symfony e explicar como você poderá
-iniciar rapidamente, mostrando-lhe um projeto simples em ação.
+Comece a usar o Symfony em 10 minutos! Mesmo! Isso é tudo que você precisa para entender os
+conceitos mais importantes e começar a construir um projeto real!
 
 Se você já usou um framework web antes, você deve se sentir em casa com
-o Symfony. Se não, bem-vindo à uma nova forma de desenvolver aplicações web!
+o Symfony. Se não, bem-vindo a uma nova forma de desenvolver aplicações web. O Symfony
+*abraça* as melhores práticas, mantém compatibilidade com versões anteriores (Sim! A atualização é sempre
+segura e fácil!) e oferece suporte a longo prazo.
 
-.. tip::
-
-    Quer saber por que e quando você precisa usar um framework? Leia o documento "`Symfony
-    em 5 minutos`_" .
+.. _installing-symfony2:
 
 Baixando o Symfony
--------------------
+------------------
 
-Primeiro, verifique se você tem um servidor web instalado e configurado (como
-o Apache) com a versão mais recente possível do PHP (é recomendado o PHP 5.3.8 ou 
-mais recente).
+Primeiro, certifique-se de ter instalado o `Composer`_ e ter o PHP 7.1.3 ou superior.
 
-Pronto? Comece fazendo o download da "`Edição Standard do Symfony`_", uma :term:`distribuição`
-do Symfony que é pré-configurada para os casos de uso mais comuns e
-contém também um código que demonstra como usar Symfony (obtenha o arquivo
-com os *vendors* incluídos para começar ainda mais rápido).
+Pronto? Em um terminal, execute:
 
-Após descompactar o arquivo no seu diretório raiz do servidor web, você deve
-ter um diretório ``Symfony/`` parecido com o seguinte:
+.. code-block:: terminal
 
-.. code-block:: text
+    $ composer create-project symfony/skeleton guia_rapido
 
-    www/ <- your web root directory
-        Symfony/ <- the unpacked archive
-            app/
-                cache/
-                config/
-                logs/
-                Resources/
-            bin/
-            src/
-                Acme/
-                    DemoBundle/
-                        Controller/
-                        Resources/
-                        ...
-            vendor/
-                symfony/
-                doctrine/
-                ...
-            web/
-                app.php
-                ...
-
-.. note::
-
-    Se você está familiarizado com o Composer, poderá executar o seguinte comando
-    em vez de baixar o arquivo:
-
-    .. code-block:: bash
-
-        $ composer.phar create-project symfony/framework-standard-edition path/to/install 2.1.x-dev
-
-        # remove the Git history
-        $ rm -rf .git
-
-        Para uma versão exata, substitua `2.1.x-dev` com a versão mais recente do Symfony
-        (Ex. 2.1.1). Para detalhes, veja a `Página de Instalação do Symfony`_
-
-.. tip::
-
-    Se você tem o PHP 5.4, é possível usar o servidor web integrado:
-
-    .. code-block:: bash
-
-        # check your PHP CLI configuration
-        $ php ./app/check.php
-
-        # run the built-in web server
-        $ php ./app/console server:run
-
-    Então, a URL para a sua aplicação será "http://localhost:8000/app_dev.php"
-
-    O servidor integrado deve ser usado apenas para fins de desenvolvimento, mas
-    pode ajudá-lo a iniciar o seu projeto de forma rápida e fácil.
-
-Verificando a configuração
---------------------------
-
-O Symfony vem com uma interface visual para teste da configuração do servidor que ajuda a evitar 
-algumas dores de cabeça que originam da má configuração do servidor Web ou do PHP. Use a seguinte
-URL para ver o diagnóstico para a sua máquina:
+Isso cria um novo diretório ``guia_rapido/`` com uma pequena mas poderosa nova
+aplicação Symfony:
 
 .. code-block:: text
 
-    http://localhost/config.php
+    guia_rapido/
+    ├─ .env
+    ├─ .env.dist
+    ├─ bin/console
+    ├─ composer.json
+    ├─ composer.lock
+    ├─ config/
+    ├─ public/index.php
+    ├─ src/
+    ├─ symfony.lock
+    ├─ var/
+    └─ vendor/
 
-.. note::
+Já podemos carregar o projeto em um navegador? Claro! Você pode configurar
+:doc:`o Nginx ou o Apache </setup/web_server_configuration>` e configurar o document
+root para ser o diretório ``public/``. Mas, para desenvolvimento, o Symfony possui seu próprio servidor.
+Instale e execute-o com:
 
-    Todos as URLs de exemplo assumem que você baixou e descompactou o Symfony
-    diretamente no diretório raiz web do seu servidor web. Se você seguiu as instruções
-    acima e descompactou o diretório `Symfony` em seu raiz web, então, adicione
-    `/Symfony/web` após `localhost` em todas as URLs:
+.. code-block:: terminal
 
-    .. code-block:: text
+    $ composer require server --dev
+    $ php bin/console server:start
 
-        http://localhost/Symfony/web/config.php
+Teste sua nova aplicação acessando ``http://localhost:8000`` em um navegador!
 
-Se houver quaisquer questões pendentes informadas, corrija-as. Você também pode 
-ajustar a sua configuração, seguindo todas as recomendações. Quando tudo estiver
-certo, clique em "*Bypass configuration and go to the Welcome page*" para solicitar
-a sua primeira página "real" do Symfony:
+.. image:: /_images/quick_tour/no_routes_page.png
+   :align: center
+   :class: with-browser
 
-.. code-block:: text
+Fundamentos: Rota, Controller, Resposta
+---------------------------------------
 
-    http://localhost/app_dev.php/
+Nosso projeto tem apenas cerca de 15 arquivos, mas está pronto para se tornar uma API elegante, uma aplicação
+web robusta ou um microsserviço. O Symfony começa pequeno, mas escala com você.
 
-O Symfony lhe dá as boas vindas e parabeniza-o por seu trabalho até agora!
+Mas antes de irmos muito longe, vamos nos aprofundar nos fundamentos construindo nossa primeira página.
 
-Compreendendo os Fundamentos
-----------------------------
-
-Um dos objetivos principais de um framework é garantir a `Separação de Responsabilidades`_.
-Isso mantém o seu código organizado e permite que a sua aplicação evolua facilmente ao longo 
-do tempo, evitando a mistura de chamadas ao banco de dados, de tags HTML e de lógica de 
-negócios no mesmo script. Para atingir este objetivo com o Symfony, primeiro você
-precisa aprender alguns conceitos e termos fundamentais.
-
-.. tip::
-
-    Quer uma prova de que o uso de um framework é melhor do que misturar tudo
-    no mesmo script? Leia o capítulo ":doc:`/book/from_flat_php_to_Symfony`"
-    do livro.
-
-A distribuição vem com um código de exemplo que você pode usar para aprender mais sobre 
-os principais conceitos do Symfony. Vá para a seguinte URL para ser cumprimentado pelo
-Symfony (substitua *Fabien* pelo seu primeiro nome):
-
-.. code-block:: text
-
-    http://localhost/app_dev.php/demo/hello/Fabien
-
-O que está acontecendo aqui? Vamos dissecar a URL:
-
-* ``app_dev.php``: Este é o :term:`front controller`. É o único ponto de entrada
-  da aplicação e responde à todas as solicitações dos usuários;
-
-* ``/demo/hello/Fabien``: Este é o *caminho virtual* para o recurso que o usuário
-  quer acessar.
-
-Sua responsabilidade como desenvolvedor é escrever o código que mapeia a *solicitação* 
-do usuário (``/demo/hello/Fabien``) para o *recurso* associado à ela
-(a página HTML ``Hello Fabien!``).
-
-Roteamento
-~~~~~~~~~~
-
-O Symfony encaminha a solicitação para o código que lida com ela, tentando corresponder a
-URL solicitada contra alguns padrões configurados. Por predefinição, esses padrões
-(chamados de rotas) são definidos no arquivo de configuração ``app/config/routing.yml``.
-Quando você está no :ref:`ambiente<quick-tour-big-picture-environments>` ``dev`` - 
-indicado pelo front controller app_**dev**.php - o arquivo de configuração
-``app/config/routing_dev.yml`` também é carregado. Na Edição Standard, as rotas para
-estas páginas "demo" são colocadas no arquivo:
+Comece em ``config/routes.yaml``: aqui é onde *nós* podemos definir o URL para nossa nova
+página. Descomente o exemplo que já existe no arquivo:
 
 .. code-block:: yaml
 
-    # app/config/routing_dev.yml
-    _welcome:
-        pattern:  /
-        defaults: { _controller: AcmeDemoBundle:Welcome:index }
+    index:
+        path: /
+        controller: 'App\Controller\DefaultController::index'
 
-    _demo:
-        resource: "@AcmeDemoBundle/Controller/DemoController.php"
-        type:     annotation
-        prefix:   /demo
+Isso é uma *rota*: ela define o URL para sua página (``/``) e o "controller":
+a *função* que será chamada sempre que alguém acessar esse URL. Essa função
+ainda não existe, então vamos criá-la!
 
-    # ...
+Em ``src/Controller``, crie uma nova classe ``DefaultController`` e um método ``index``
+dentro::
 
-As três primeiras linhas (após o comentário) definem o código que é executado
-quando o usuário solicita o recurso "``/``" (ou seja, a página de boas-vindas que você viu
-anterioremente). Quando solicitado, o controlador ``AcmeDemoBundle:Welcome:index``
-será executado. Na próxima seção, você vai aprender exatamente o que isso significa.
-
-.. tip::
-
-    A Edição Standard do Symfony usa `YAML`_ para seus arquivos de configuração,
-    mas o Symfony também suporta XML, PHP e anotações nativamente. Os diferentes 
-    formatos são compatíveis e podem ser utilizados alternadamente dentro de uma
-    aplicação. Além disso, o desempenho de sua aplicação não depende do
-    formato de configuração que você escolher, pois tudo é armazenado em cache na
-    primeira solicitação.
-
-Controladores
-~~~~~~~~~~~~~
-
-Controlador é um nome fantasia para uma função ou método PHP que manipula as *solicitações* 
-de entrada e retorna *respostas* (código HTML, na maioria das vezes). Em vez de usar as 
-variáveis ​​globais e funções do PHP (como ``$_GET`` ou ``header()``) para gerenciar
-essas mensagens HTTP, o Symfony usa objetos: :class:`Symfony\\Component\\HttpFoundation\\Request`
-e :class:`Symfony\\Component\\HttpFoundation\\Response`. O controlador mais simples possível
-pode criar a resposta manualmente, com base na solicitação::
+    namespace App\Controller;
 
     use Symfony\Component\HttpFoundation\Response;
 
-    $name = $request->query->get('name');
-
-    return new Response('Hello '.$name, 200, array('Content-Type' => 'text/plain'));
-
-.. note::
-
-    O Symfony engloba a Especificação HTTP, que são as regras que regem
-    toda a comunicação na Web. Leia o capítulo ":doc:`/book/http_fundamentals`"
-    do livro para aprender mais sobre ela e o poder que
-    isso acrescenta.
-
-O Symfony escolhe o controlador com base no valor ``_controller`` da
-configuração de roteamento: ``AcmeDemoBundle:Welcome:index``. Esta string é o
-*nome lógico* do controlador, e ela referencia o método ``indexAction`` da
-classe ``Acme\DemoBundle\Controller\WelcomeController``::
-
-    // src/Acme/DemoBundle/Controller/WelcomeController.php
-    namespace Acme\DemoBundle\Controller;
-
-    use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-    class WelcomeController extends Controller
+    class DefaultController
     {
-        public function indexAction()
+        public function index()
         {
-            return $this->render('AcmeDemoBundle:Welcome:index.html.twig');
+            return new Response('Olá!');
         }
     }
 
-.. tip::
+É isso aí! Tente acessar a página inicial: ``http://localhost:8000/``. O Symfony vê
+que o URL corresponde à nossa rota e então executa o novo método ``index()``.
 
-    Você poderia ter usado o nome completo da classe e do método - 
-    ``Acme\DemoBundle\Controller\WelcomeController::indexAction`` - para o
-    valor ``_controller``. Mas, se você seguir algumas convenções simples, o
-    nome lógico é menor e permite mais flexibilidade.
+Um controller é apenas uma função normal com *uma* regra: ele deve retornar um objeto
+``Response`` do Symfony. Mas essa resposta pode conter qualquer coisa: texto simples, JSON ou
+uma página HTML completa.
 
-A classe ``WelcomeController`` estende a classe nativa ``Controller``,
-que fornece métodos de atalho úteis, tal como o método 
-:method:`Symfony\\Bundle\\FrameworkBundle\\Controller\\Controller::render`
-que carrega e renderiza um template (``AcmeDemoBundle:Welcome:index.html.twig``). 
-O valor retornado é um objeto Response populado com o conteúdo processado. 
-Assim, se as necessidades surgirem, o Response pode ser ajustado antes de ser 
-enviado ao navegador::
+Mas o sistema de roteamento é *muito* mais poderoso. Então, vamos tornar a rota mais interessante:
 
-    public function indexAction()
+.. code-block:: diff
+
+    # config/routes.yaml
+    index:
+    -     path: /
+    +     path: /ola/{name}
+        controller: 'App\Controller\DefaultController::index'
+
+O URL para esta página mudou: ele *agora* é ``/ola/*``: o ``{name}`` age
+como um curinga que corresponde a qualquer coisa. E ainda tem mais! Atualize o controller também:
+
+.. code-block:: diff
+
+    // src/Controller/DefaultController.php
+    // ...
+
+    - public function index()
+    + public function index($name)
     {
-        $response = $this->render('AcmeDemoBundle:Welcome:index.txt.twig');
-        $response->headers->set('Content-Type', 'text/plain');
-
-        return $response;
+    -     return new Response('Olá!');
+    +     return new Response("Olá $name!");
     }
 
-Não importa como você faz isso, o objetivo final do seu controlador sempre será retornar
-o objeto ``Response`` que deve ser devolvido ao usuário. Este objeto ``Response`` pode 
-ser populado com código HTML, representar um redirecionamento do cliente, ou mesmo
-retornar o conteúdo de uma imagem JPG com um cabeçalho ``Content-Type`` de ``image/jpg``.
+Teste a página acessando ``http://localhost:8000/ola/Symfony``. Você deve
+ver: Olá Symfony! O valor de ``{name}`` no URL está disponível como um argumento ``$name``
+no seu controller.
 
-.. tip::
+Mas isso pode ser ainda mais simples! Então vamos instalar o suporte a annotations:
 
-    Estender a classe base ``Controller`` é opcional. De fato 
-    um controlador pode ser uma função PHP simples ou até mesmo uma closure PHP.
-    O capítulo ":doc:`O Controlador</book/controller>`" do livro lhe ensina
-    tudo sobre os controladores do Symfony.
+.. code-block:: terminal
 
-O nome do template, ``AcmeDemoBundle:Welcome:index.html.twig``, é o *nome lógico* 
-do template e faz referência ao arquivo ``Resources/views/Welcome/index.html.twig`` 
-dentro do ``AcmeDemoBundle`` (localizado em ``src/Acme/DemoBundle``). 
-A seção bundles abaixo irá explicar
-porque isso é útil.
+    $ composer require annotations
 
-Agora, dê uma olhada novamente na configuração de roteamento e encontre a chave
-``_demo``.
+Agora, comente a rota YAML adicionando o caractere ``#``:
 
 .. code-block:: yaml
 
-    # app/config/routing_dev.yml
-    _demo:
-        resource: "@AcmeDemoBundle/Controller/DemoController.php"
-        type:     annotation
-        prefix:   /demo
+    # config/routes.yaml
+    # index:
+    #     path: /ola/{name}
+    #     controller: 'App\Controller\DefaultController::index'
 
-O Symfony pode ler/importar as informações de roteamento de diferentes arquivos escritos
-em YAML, XML, PHP ou até mesmo incorporado em anotações PHP. Aqui, o *nome lógico* do
-arquivo é ``@AcmeDemoBundle/Controller/DemoController.php`` e refere-se
-ao arquivo ``src/Acme/DemoBundle/Controller/DemoController.php`` . Neste
-arquivo, as rotas são definidas como anotações nos métodos da ação::
+Em vez disso, adicione a rota *logo acima* do método controller:
 
-    // src/Acme/DemoBundle/Controller/DemoController.php
-    use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-    use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+.. code-block:: diff
 
-    class DemoController extends Controller
+    // src/Controller/DefaultController.php
+    // ...
+
+    + use Symfony\Component\Routing\Annotation\Route;
+
+    + /**
+    +  * @Route("/ola/{name}")
+    +  */
+    public function index($name)
+
+Isso funciona exatamente como antes! Mas usando annotations, a rota e o controller
+vivem lado a lado. Precisa de outra página? Basta adicionar outra rota e método
+no ``DefaultController``::
+
+    // src/Controller/DefaultController.php
+    // ...
+
+    /**
+     * @Route("/simplicidade")
+     */
+    public function simple()
     {
-        /**
-         * @Route("/hello/{name}", name="_demo_hello")
-         * @Template()
-         */
-        public function helloAction($name)
-        {
-            return array('name' => $name);
-        }
-
-        // ...
+        return new Response('Simples! Fácil! Ótimo!');
     }
 
-A anotação ``@Route()`` define uma nova rota com um padrão 
-``/hello/{name}`` que executa o método ``helloAction`` quando corresponder. A
-string entre chaves como ``{name}`` é chamada de placeholder. Como
-você pode ver, o seu valor pode ser obtido através do argumento do método ``$name``.
+O roteamento pode fazer *ainda* mais, mas vamos guardar isso para outra hora! No momento, nossa
+aplicação precisa de mais recursos! Como um engine de template, logging, ferramentas de depuração e muito mais.
 
-.. note::
+Continue lendo com :doc:`/quick_tour/flex_recipes`.
 
-    Mesmo as anotações não sendo suportadas nativamente pelo PHP, você as usará
-    extensivamente no Symfony como uma forma conveniente de configurar o comportamento
-    do framework e manter a configuração próxima ao código.
-
-Se você verificar o código do controlador, poderá ver que em vez de
-renderizar um template e retornar um objeto ``Response`` como antes,
-ele apenas retorna um array de parâmetros. A anotação ``@Template()`` diz ao
-Symfony para renderizar o template para você, passando cada variável do array
-ao template. O nome do template que é renderizado segue o nome
-do controlador. Assim, neste exemplo, o template ``AcmeDemoBundle:Demo:hello.html.twig``
-é renderizado (localizado em ``src/Acme/DemoBundle/Resources/views/Demo/hello.html.twig``).
-
-.. tip::
-
-    As anotações ``@Route()`` e ``@Template()`` são mais poderosas do que
-    os exemplos simples mostrados neste tutorial. Saiba mais sobre "`anotações
-    em controladores`_" na documentação oficial.
-
-Templates
-~~~~~~~~~
-
-O controlador renderiza o
-template ``src/Acme/DemoBundle/Resources/views/Demo/hello.html.twig`` (ou
-``AcmeDemoBundle:Demo:hello.html.twig`` se você usar o nome lógico):
-
-.. code-block:: jinja
-
-    {# src/Acme/DemoBundle/Resources/views/Demo/hello.html.twig #}
-    {% extends "AcmeDemoBundle::layout.html.twig" %}
-
-    {% block title "Hello " ~ name %}
-
-    {% block content %}
-        <h1>Hello {{ name }}!</h1>
-    {% endblock %}
-
-Por padrão, o Symfony usa o `Twig`_ como seu template engine, mas você também pode usar
-templates tradicionais PHP se você escolher. No próximo capítulo apresentaremos como
-os templates funcionam no Symfony.
-
-Bundles
-~~~~~~~
-
-Você pode ter se perguntado por que a palavra :term:`bundle` é usada em muitos nomes que
-vimos até agora. Todo o código que você escreve para a sua aplicação está organizado em
-bundles. Na forma de falar do Symfony, um bundle é um conjunto estruturado de arquivos (arquivos PHP,
-folhas de estilo, JavaScripts, imagens, ...) que implementam uma funcionalidade única (um
-blog, um fórum, ...) e que podem ser facilmente compartilhados com outros desenvolvedores. Até
-agora, manipulamos um bundle, ``AcmeDemoBundle``. Você vai aprender
-mais sobre bundles no último capítulo deste tutorial.
-
-.. _quick-tour-big-picture-environments:
-
-Trabalhando com Ambientes
--------------------------
-
-Agora que você tem uma compreensão melhor de como funciona o Symfony, verifique 
-a parte inferior de qualquer página renderizada com o Symfony. Você deve observar uma pequena
-barra com o logotipo do Symfony. Isso é chamado de "Barra de ferramentas para Debug Web" e
-é a melhor amiga do desenvolvedor.
-
-.. image:: /_images/quick_tour/web_debug_toolbar.png
-   :align: center
-   :class: with-browser
-
-Mas, o que você vê inicialmente é apenas a ponta do iceberg; clique sobre o estranho
-número hexadecimal para revelar mais uma ferramenta de depuração muito útil do Symfony:
-o profiler.
-
-.. image:: /_images/quick_tour/profiler.png
-   :align: center
-   :class: with-browser
-
-É claro, você não vai querer mostrar essas ferramentas quando implantar a sua aplicação
-em produção. É por isso que você vai encontrar um outro front controller no
-diretório ``web/`` (``app.php``), que é otimizado para o ambiente de produção:
-
-.. code-block:: text
-
-    http://localhost/app.php/demo/hello/Fabien
-
-E, se você usar o Apache com o ``mod_rewrite`` habilitado, poderá até omitir a
-parte ``app.php`` da URL:
-
-.. code-block:: text
-
-    http://localhost/demo/hello/Fabien
-
-Por último, mas não menos importante, nos servidores de produção, você deve apontar seu diretório
-raiz web para o diretório ``web/`` para proteger sua instalação e ter uma URL
-ainda melhor:
-
-.. code-block:: text
-
-    http://localhost/demo/hello/Fabien
-
-.. note::
-
-    Note que as três URLs acima são fornecidas aqui apenas como **exemplos** de
-    como uma URL parece quando o front controller de produção é usado (com ou
-    sem mod_rewrite). Se você realmente experimentá-los em uma
-    instalação do *Symfony Standard Edition* você receberá um erro 404 pois
-    o *AcmeDemoBundle* está habilitado somente no ambiente dev e suas rotas importam
-    o *app/config/routing_dev.yml*.
-
-Para fazer a sua aplicação responder mais rápido, o Symfony mantém um cache sob o
-diretório ``app/cache/``. No ambiente de desenvolvimento (``app_dev.php``),
-esse cache é liberado automaticamente sempre que fizer alterações em qualquer código ou
-configuração. Mas esse não é o caso do ambiente de produção
-(``app.php``) onde o desempenho é fundamental. É por isso que você deve sempre usar
-o ambiente de desenvolvimento ao desenvolver a sua aplicação.
-
-Diferentes :term:`ambientes<environment>` de uma dada aplicação diferem
-apenas na sua configuração. Na verdade, uma configuração pode herdar de 
-outra:
-
-.. code-block:: yaml
-
-    # app/config/config_dev.yml
-    imports:
-        - { resource: config.yml }
-
-    web_profiler:
-        toolbar: true
-        intercept_redirects: false
-
-O ambiente ``dev`` (que carrega o arquivo de configuração ``config_dev.yml``)
-importa o arquivo global ``config.yml`` e, em seguida, modifica-o, neste exemplo,
-habilitando a barra de ferramentas para debug web.
-
-Considerações Finais
---------------------
-
-Parabéns! Você já teve a sua primeira amostra de código do Symfony. Isso não foi tão
-difícil, foi? Há muito mais para explorar, mas, você já deve ter notado como
-o Symfony torna muito fácil implementar web sites de forma melhor e mais rápida. 
-Se você está ansioso para aprender mais sobre o Symfony, mergulhe na próxima seção:
-":doc:`A Visão<the_view>`".
-
-.. _Edição Standard do Symfony:       http://symfony.com/download
-.. _Symfony em 5 minutos:              http://symfony.com/symfony-in-five-minutes
-.. _Separação de Responsabilidades:    http://en.wikipedia.org/wiki/Separation_of_concerns
-.. _YAML:                              http://www.yaml.org/
-.. _anotações nos controladores:       http://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html#annotations-for-controllers
-.. _Twig:                              http://twig.sensiolabs.org/
-.. _`Página de Instalação do Symfony`: http://symfony.com/download
+.. _`Composer`: https://getcomposer.org/
