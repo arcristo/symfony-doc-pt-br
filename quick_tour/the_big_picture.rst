@@ -106,10 +106,10 @@ Mas o sistema de roteamento é *muito* mais poderoso. Então, vamos tornar a rot
     # config/routes.yaml
     index:
     -     path: /
-    +     path: /ola/{name}
+    +     path: /hello/{name}
         controller: 'App\Controller\DefaultController::index'
 
-O URL para esta página mudou: ele *agora* é ``/ola/*``: o ``{name}`` age
+O URL para esta página mudou: ele *agora* é ``/hello/*``: o ``{name}`` age
 como um curinga que corresponde a qualquer coisa. E ainda tem mais! Atualize o controller também:
 
 .. code-block:: diff
@@ -124,7 +124,7 @@ como um curinga que corresponde a qualquer coisa. E ainda tem mais! Atualize o c
     +     return new Response("Olá $name!");
     }
 
-Teste a página acessando ``http://localhost:8000/ola/Symfony``. Você deve
+Teste a página acessando ``http://localhost:8000/hello/Symfony``. Você deve
 ver: Olá Symfony! O valor de ``{name}`` no URL está disponível como um argumento ``$name``
 no seu controller.
 
@@ -140,7 +140,7 @@ Agora, comente a rota YAML adicionando o caractere ``#``:
 
     # config/routes.yaml
     # index:
-    #     path: /ola/{name}
+    #     path: /hello/{name}
     #     controller: 'App\Controller\DefaultController::index'
 
 Em vez disso, adicione a rota *logo acima* do método controller:
@@ -153,7 +153,7 @@ Em vez disso, adicione a rota *logo acima* do método controller:
     + use Symfony\Component\Routing\Annotation\Route;
 
     + /**
-    +  * @Route("/ola/{name}")
+    +  * @Route("/hello/{name}")
     +  */
     public function index($name)
 
