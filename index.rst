@@ -31,7 +31,9 @@ Tópicos
 .. toctree::
     :maxdepth: 1
 
+    best_practices
     bundles
+    cache
     console
     doctrine
     deployment
@@ -41,7 +43,10 @@ Tópicos
     frontend
     http_cache
     logging
+    mailer
+    mercure
     messenger
+    migration
     performance
     profiler
     routing
@@ -53,17 +58,8 @@ Tópicos
     testing
     translation
     validation
+    web_link
     workflow
-
-Melhores Práticas
------------------
-
-.. toctree::
-    :hidden:
-
-    best_practices/index
-
-Leia as :doc:`Melhores Práticas Oficiais </best_practices/index>`.
 
 Componentes
 -----------
@@ -78,7 +74,7 @@ Leia a documentação dos :doc:`Componentes </components/index>`.
 Documentos de Referência
 ------------------------
 
-Obtenha respostas rapidamente com documentos de referência:
+Obtenha respostas rapidamente com os documentos de referência:
 
 .. toctree::
     :hidden:
