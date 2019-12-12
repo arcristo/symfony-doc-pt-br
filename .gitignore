@@ -1,3 +1,14 @@
+### local ###
+
+.idea
+.deploy/local/.env
+
+.DS_Store
+Thumbs.db
+
+### documentation ###
+
 /_build/doctrees
 /_build/html
 *.pyc
+.env.*

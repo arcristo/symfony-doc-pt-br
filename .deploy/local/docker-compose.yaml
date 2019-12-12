@@ -1,0 +1,46 @@
+version: "3.7"
+
+services:
+    nginx:
+        image: nginx:alpine
+        restart: always
+        command: >
+            /bin/sh -c
+            "envsubst '$$APP_BASE_URL'
+            < /etc/nginx/conf.d/default.conf.template
+            > /etc/nginx/conf.d/default.conf
+            && nginx -g 'daemon off;'"
+        ports:
+            - ${DEV_HOST_PORT_HTTP}:80
+            - ${DEV_HOST_PORT_HTTPS}:443
+        volumes:
+            # folders
+            - ../..:/var/www
+            - ../../_build/html:/var/www/public
+            # files
+            - ./services/nginx/default.conf:/etc/nginx/conf.d/default.conf.template:ro
+        env_file:
+            # docker
+            - .env
+            # application
+            - ../../.env.local
+
+    python:
+        image: ${DEV_DOCKER_IMAGE_PYTHON}:dev
+        build:
+            context: ""
+            dockerfile: ../docker/dev/Dockerfile
+            args:
+                BASE_IMAGE: ${DEV_DOCKER_IMAGE_PYTHON}:base
+        restart: always
+        command: tail -f /dev/null
+        volumes:
+            # folders
+            - ../..:/var/www
+        working_dir: /var/www
+        env_file:
+            # docker
+            - .env
+            # application
+            - ../../.env.local
+        user: ${DEV_UID}:${DEV_GID}
