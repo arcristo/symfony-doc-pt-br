@@ -14,22 +14,22 @@ branches:
 install:
     - >
         docker build
-            -t ${DEV_DOCKER_IMAGE_PYTHON}:base
-            .deploy/docker/base
+        -t ${DEV_DOCKER_IMAGE_PYTHON}:base
+        .deploy/docker/base
     - >
         docker build
-            -t ${DEV_DOCKER_IMAGE_PYTHON}:test
-            --build-arg BASE_IMAGE=${DEV_DOCKER_IMAGE_PYTHON}:base
-            .deploy/docker/test
+        -t ${DEV_DOCKER_IMAGE_PYTHON}:test
+        --build-arg BASE_IMAGE=${DEV_DOCKER_IMAGE_PYTHON}:base
+        .deploy/docker/test
 
 script:
     - >
         docker run
-            --rm
-            --name symfony_doc_pt_br
-            -v ${PWD}:/var/www
-            ${DEV_DOCKER_IMAGE_PYTHON}:test
-            make -C _build html
+        --rm
+        --name symfony_doc_pt_br
+        -v ${PWD}:/var/www
+        ${DEV_DOCKER_IMAGE_PYTHON}:test
+        make -C _build html
 
 deploy:
     provider:      pages
@@ -38,4 +38,4 @@ deploy:
     local_dir:     _build/html
     target_branch: gh-pages
     on:
-        branch: 5.0
+        branch: '5.0'
