@@ -189,7 +189,7 @@ html_theme_path = ["_themes", ]
 #html_split_index = False
 
 # If true, links to the reST sources are added to the pages.
-#html_show_sourcelink = True
+html_show_sourcelink = False
 
 # If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
 #html_show_sphinx = True
@@ -208,6 +208,14 @@ html_theme_path = ["_themes", ]
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'SymfonyDoc'
 
+# Integrate with GitHub
+html_context = {
+    "display_github": True,
+    "github_user": "adielcristo",
+    "github_repo": "symfony-doc-pt-br",
+    "github_version": "5.0",
+    "conf_py_path": "/",
+}
 
 # -- Options for LaTeX output --------------------------------------------------
 
