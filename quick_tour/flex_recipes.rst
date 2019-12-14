@@ -136,7 +136,7 @@ Um dos recursos *mais legais* do Symfony ainda nem está instalado! Vamos conser
 Sim! Este é outro alias! E o Flex *também* instala outra receita, que automatiza
 a configuração do Profiler do Symfony. Qual o resultado? Recarregue a página!
 
-Vê aquela barra preta no final da página? Essa é a barra de ferramentas de depuração web, e é sua nova
+Vê aquela barra preta na parte inferior da página? Essa é a barra de ferramentas de depuração web, e é sua nova
 melhor amiga. Ao passar o mouse sobre cada ícone você pode obter informações sobre qual controlador
 foi executado, informações de performance, itens encontrados ou não em cache e muito mais. Clique em
 qualquer ícone para acessar o *profiler*, onde você tem dados de depuração e performance
