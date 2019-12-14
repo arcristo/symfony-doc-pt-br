@@ -16,7 +16,7 @@ Baixando o Symfony
 
 Primeiro, verifique se você instalou o `Composer`_ e possui o PHP 7.1.3 ou superior.
 
-Preparada? Em um terminal, execute:
+Preparada? Em um terminal execute:
 
 .. code-block:: terminal
 
@@ -126,12 +126,12 @@ como um curinga que corresponde a qualquer coisa. E fica melhor! Atualize o cont
     +     public function index($name)
         {
     -         return new Response('Olá!');
-    +         return new Response("Olá $name!");
+    +         return new Response("Olá, $name!");
         }
     }
 
 Teste a página acessando ``http://localhost:8000/hello/Symfony``. Você deve
-ver: Olá Symfony! O valor do ``{name}`` no URL está disponível como um argumento ``$name``
+ver: Olá, Symfony! O valor do ``{name}`` no URL está disponível como um argumento ``$name``
 no seu controlador.
 
 Mas isso pode ser ainda mais simples! Então vamos instalar o suporte a anotações:
@@ -192,7 +192,7 @@ no ``DefaultController``::
         }
     }
 
-O roteamento pode fazer *ainda* mais, mas guardaremos isso para outra hora! No momento, nossa
+O roteamento pode fazer *ainda* mais, mas guardaremos isso para outra hora! No momento nossa
 aplicação precisa de mais recursos! Como um mecanismo de template, ferramentas de log, ferramentas de depuração e muito mais.
 
 Continue lendo com :doc:`/quick_tour/flex_recipes`.
