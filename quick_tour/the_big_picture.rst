@@ -20,14 +20,14 @@ Preparada? Em um terminal execute:
 
 .. code-block:: terminal
 
-    $ composer create-project symfony/skeleton quick_tour
+    $ composer create-project symfony/skeleton tour-rapido
 
-Isso cria um novo diretório ``quick_tour/`` com uma pequena, mas poderosa nova
+Isso cria um novo diretório ``tour-rapido/`` com uma pequena, mas poderosa nova
 aplicação Symfony:
 
 .. code-block:: text
 
-    quick_tour/
+    tour-rapido/
     ├─ .env
     ├─ bin/console
     ├─ composer.json
@@ -55,11 +55,11 @@ Teste sua nova aplicação acessando ``http://localhost:8000`` em um navegador!
    :align: center
    :class: with-browser
 
-Fundamentos: Rota, Controlador, Resposta
-----------------------------------------
+Fundamentos: Rota, Controller, Resposta
+---------------------------------------
 
 Nosso projeto tem apenas uns 15 arquivos, mas está pronto para se tornar uma elegante API, uma
-aplicação web robusta, ou um microsserviço. Symfony começa pequeno, mas escala com você.
+aplicação web robusta, ou um microsserviço. O Symfony começa pequeno, mas escala com você.
 
 Mas antes de irmos longe demais, vamos nos aprofundar nos fundamentos construindo nossa primeira página.
 
@@ -73,7 +73,7 @@ página. Remova o comentário do exemplo que já está no arquivo:
         path: /
         controller: 'App\Controller\DefaultController::index'
 
-Isso é uma *rota*: ela define o URL da sua página (``/``) e o "controlador":
+Isso é uma *rota*: ela define o URL da sua página (``/``) e o "controller":
 a *função* que será chamada sempre que alguém acessar esse URL. Essa função
 não existe ainda, então vamos criá-la!
 
@@ -96,7 +96,7 @@ dentro::
 É isso aí! Tente ir para a página inicial: ``http://localhost:8000/``. O Symfony vê
 que o URL corresponde à nossa rota e então executa o novo método ``index()``.
 
-Um controlador é apenas uma função normal com *uma* regra: ela deve retornar um objeto
+Um controller é apenas uma função normal com *uma* regra: ela deve retornar um objeto
 Symfony ``Response``. Mas essa resposta pode conter qualquer coisa: texto simples, JSON ou
 uma página HTML completa.
 
@@ -111,7 +111,7 @@ Mas o sistema de roteamento é *muito* mais poderoso. Então vamos tornar a rota
         controller: 'App\Controller\DefaultController::index'
 
 O URL desta página mudou: ele *agora* é ``/hello/*``: o ``{name}`` funciona
-como um curinga que corresponde a qualquer coisa. E fica melhor! Atualize o controlador também:
+como um curinga que corresponde a qualquer coisa. E fica melhor! Atualize o controller também:
 
 .. code-block:: diff
 
@@ -132,7 +132,7 @@ como um curinga que corresponde a qualquer coisa. E fica melhor! Atualize o cont
 
 Teste a página acessando ``http://localhost:8000/hello/Symfony``. Você deve
 ver: Olá, Symfony! O valor do ``{name}`` no URL está disponível como um argumento ``$name``
-no seu controlador.
+no seu controller.
 
 Mas isso pode ser ainda mais simples! Então vamos instalar o suporte a anotações:
 
@@ -149,7 +149,7 @@ Agora, comente a rota YAML adicionando o caractere ``#``:
     #     path: /hello/{name}
     #     controller: 'App\Controller\DefaultController::index'
 
-Em vez disso, adicione a rota *logo acima* do método do controlador:
+Em vez disso, adicione a rota *logo acima* do método do controller:
 
 .. code-block:: diff
 
@@ -169,7 +169,7 @@ Em vez disso, adicione a rota *logo acima* do método do controlador:
          }
     }
 
-Isso funciona exatamente como antes! Mas ao usar anotações, a rota e o controlador
+Isso funciona exatamente como antes! Mas ao usar anotações, a rota e o controller
 ficam próximos um do outro. Precisa de outra página? Adicione outra rota e método
 no ``DefaultController``::
 
@@ -193,7 +193,7 @@ no ``DefaultController``::
     }
 
 O roteamento pode fazer *ainda* mais, mas guardaremos isso para outra hora! No momento nossa
-aplicação precisa de mais recursos! Como um mecanismo de template, ferramentas de log, ferramentas de depuração e muito mais.
+aplicação precisa de mais recursos! Como um mecanismo de template, ferramentas de logging, ferramentas de depuração e muito mais.
 
 Continue lendo com :doc:`/quick_tour/flex_recipes`.
 

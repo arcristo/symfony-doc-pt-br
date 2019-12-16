@@ -9,7 +9,7 @@ na multidão de frameworks, vamos mergulhar na arquitetura agora.
 Adicione Logging
 ----------------
 
-Uma nova aplicação Symfony é micro: ela é basicamente apenas um sistema de roteamento e controladores. Mas,
+Uma nova aplicação Symfony é micro: ela é basicamente apenas um sistema de roteamento e controllers. Mas,
 graças ao Flex, a instalação de mais recursos é simples.
 
 Quer um sistema de logging? Sem problema:
@@ -19,7 +19,7 @@ Quer um sistema de logging? Sem problema:
     $ composer require logger
 
 Isso instala e configura (através de uma receita) a poderosa biblioteca `Monolog`_. Para
-usar o logger em um controlador, adicione um novo argumento com a declaração de tipo ``LoggerInterface``::
+usar o logger em um controller, adicione um novo argumento com a declaração de tipo ``LoggerInterface``::
 
     // src/Controller/DefaultController.php
     namespace App\Controller;
@@ -87,7 +87,7 @@ Criando Serviços
 
 Para manter seu código organizado você pode até mesmo criar seus próprios serviços! Suponha que você
 queira gerar uma saudação aleatória (por exemplo, "Olá", "Yo", etc). Em vez de colocar
-esse código diretamente no seu controlador, crie uma nova classe::
+esse código diretamente no seu controller, crie uma nova classe::
 
     // src/GreetingGenerator.php
     namespace App;
@@ -103,7 +103,7 @@ esse código diretamente no seu controlador, crie uma nova classe::
         }
     }
 
-Ótimo! Você pode usar ela imediatamente no seu controlador::
+Ótimo! Você pode usar ela imediatamente no seu controller::
 
     // src/Controller/DefaultController.php
     namespace App\Controller;

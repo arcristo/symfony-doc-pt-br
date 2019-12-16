@@ -106,7 +106,7 @@ atalhos e ferramentas, como ``render()``. Crie um novo template:
     <h1>Olá, {{ name }}</h1>
 
 É isso aí! A sintaxe ``{{ name }}`` irá imprimir a variável ``name`` que é passada
-a partir do controlador. Se você é nova no Twig, seja bem-vinda! Você aprenderá mais sobre
+a partir do controller. Se você é nova no Twig, seja bem-vinda! Você aprenderá mais sobre
 sua sintaxe e poder posteriormente.
 
 Mas, por enquanto, a página contém *apenas* a tag ``h1``. Para dar a ela um layout HTML,
@@ -137,9 +137,9 @@ Sim! Este é outro alias! E o Flex *também* instala outra receita, que automati
 a configuração do Profiler do Symfony. Qual o resultado? Recarregue a página!
 
 Vê aquela barra preta na parte inferior da página? Essa é a barra de ferramentas de depuração web, e é sua nova
-melhor amiga. Ao passar o mouse sobre cada ícone você pode obter informações sobre qual controlador
-foi executado, informações de performance, itens encontrados ou não em cache e muito mais. Clique em
-qualquer ícone para acessar o *profiler*, onde você tem dados de depuração e performance
+melhor amiga. Ao passar o mouse sobre cada ícone você pode obter informações sobre qual controller
+foi executado, informações de desempenho, itens encontrados ou não em cache e muito mais. Clique em
+qualquer ícone para acessar o *profiler*, onde você tem dados de depuração e desempenho
 *ainda mais* detalhados!
 
 Ah, e à medida que você instala mais bibliotecas, você obtém mais ferramentas (como um ícone da barra de ferramentas de depuração
@@ -151,7 +151,7 @@ receita. O que mais podemos instalar?
 Suporte a API Rica
 ------------------
 
-Você está construindo uma API? Você já pode retornar JSON de qualquer controlador::
+Você está construindo uma API? Você já pode retornar JSON de qualquer controller::
 
     // src/Controller/DefaultController.php
     namespace App\Controller;
@@ -258,7 +258,7 @@ Mais Recursos, Arquitetura e Velocidade
 
 Espero que você esteja tão animada com o Flex quanto eu! Mas ainda temos *mais um* capítulo,
 e é o mais importante até agora. Quero mostrar como o Symfony permite que você crie recursos
-rapidamente *sem* sacrificar a qualidade do código ou a performance. Trata-se do
+rapidamente *sem* sacrificar a qualidade do código ou o desempenho. Trata-se do
 container de serviços, e ele é o superpoder do Symfony. Continue lendo sobre: :doc:`/quick_tour/the_architecture`.
 
 .. _`https://flex.symfony.com`: https://flex.symfony.com
