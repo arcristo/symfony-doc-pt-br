@@ -1,0 +1,567 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="pt-BR" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="pt-BR" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Flex: Componha sua Aplicação &mdash; Documentação do Symfony  documentação</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="next" title="A Arquitetura" href="the_architecture.html" />
+    <link rel="prev" title="A Visão Geral" href="the_big_picture.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Documentação do Symfony
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">O Tour Rápido</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="the_big_picture.html">A Visão Geral</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Flex: Componha sua Aplicação</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#symfony-comece-micro">Symfony: Comece Micro!</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#receitas-e-aliases-do-flex">Receitas e Aliases do Flex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#twig-renderizando-um-template">Twig: Renderizando um Template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#profiler-paraiso-da-depuracao">Profiler: Paraíso da Depuração</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#suporte-a-api-rica">Suporte a API Rica</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#removendo-receitas">Removendo Receitas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mais-recursos-arquitetura-e-velocidade">Mais Recursos, Arquitetura e Velocidade</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="the_architecture.html">A Arquitetura</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Começando</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../mailer.html">Enviando E-mails com o Mailer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">Instalando e Configurando o Symfony Framework</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../components/index.html">Os Componentes</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Documentos de Referência</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../create_framework/index.html">Crie seu próprio Framework PHP</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Documentação do Symfony</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">O Tour Rápido</a> &raquo;</li>
+        
+      <li>Flex: Componha sua Aplicação</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/adielcristo/symfony-doc-pt-br/blob/5.0/quick_tour/flex_recipes.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="flex-componha-sua-aplicacao">
+<h1>Flex: Componha sua Aplicação<a class="headerlink" href="#flex-componha-sua-aplicacao" title="Link permanente para este título">¶</a></h1>
+<p>Depois de ler a primeira parte deste tutorial, você decidiu que o Symfony
+vale mais 10 minutos. Ótima escolha! Nesta segunda parte, você aprenderá sobre
+o Symfony Flex: a incrível ferramenta que torna a adição de novos recursos tão simples quanto executar
+um comando. Ele também é a razão pela qual o Symfony é ideal para um pequeno microsserviço
+ou uma enorme aplicação. Curiosa? Perfeito!</p>
+<div class="section" id="symfony-comece-micro">
+<h2>Symfony: Comece Micro!<a class="headerlink" href="#symfony-comece-micro" title="Link permanente para este título">¶</a></h2>
+<p>A menos que você esteja criando uma API pura (falaremos mais sobre isso em breve!), você provavelmente desejará
+renderizar HTML. Para fazer isso você usará o <a class="reference external" href="https://twig.symfony.com/">Twig</a>. Twig é um motor de template para PHP
+flexível, rápido e seguro. Ele torna seus templates mais legíveis e concisos; ele também
+os torna mais amigáveis para web designers.</p>
+<p>O Twig já está instalado em nossa aplicação? Na verdade, ainda não! E isso é ótimo!
+Quando você inicia um novo projeto Symfony, ele é <em>pequeno</em>: apenas as dependências mais críticas
+são incluídas no seu arquivo <code class="docutils literal notranslate">composer.json</code>:</p>
+<div class="literal-block"><div class="highlight-text"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&quot;require&quot;: {
+    &quot;...&quot;,
+    &quot;symfony/console&quot;: &quot;^4.1&quot;,
+    &quot;symfony/flex&quot;: &quot;^1.0&quot;,
+    &quot;symfony/framework-bundle&quot;: &quot;^4.1&quot;,
+    &quot;symfony/yaml&quot;: &quot;^4.1&quot;
+}
+</pre></div>
+</td></tr></table></div></div>
+<p>Isso torna o Symfony diferente de qualquer outro framework PHP! Em vez de começar com
+uma aplicação <em>volumosa</em> com <em>todos</em> os recursos que você possa vir a precisar, uma aplicação Symfony é
+pequena, simples e <em>rápida</em>. E você tem total controle sobre o que adicionar.</p>
+</div>
+<div class="section" id="receitas-e-aliases-do-flex">
+<h2>Receitas e Aliases do Flex<a class="headerlink" href="#receitas-e-aliases-do-flex" title="Link permanente para este título">¶</a></h2>
+<p>Então, como podemos instalar e configurar o Twig? Executando um único comando:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> composer require twig
+</pre></div>
+</td></tr></table></div></div>
+<p>Duas coisas <em>muito</em> interessantes acontecem nos bastidores graças ao Symfony Flex: um
+plug-in do Composer que já está instalado em nosso projeto.</p>
+<p>Primeiro, <code class="docutils literal notranslate">twig</code> não é o nome de um pacote do Composer: é um <em>alias</em> do Flex que
+aponta para <code class="docutils literal notranslate">symfony/twig-bundle</code>. O Flex converte esse alias para o Composer.</p>
+<p>E segundo, o Flex instala uma <em>receita</em> para <code class="docutils literal notranslate">symfony/twig-bundle</code>. O que é uma receita?
+É uma maneira de uma biblioteca se configurar automaticamente adicionando e modificando
+arquivos. Graças às receitas a adicão de recursos é tranquila e automatizada: instale um pacote
+e pronto!</p>
+<p>Você pode encontrar uma lista completa de receitas e aliases acessando <a class="reference external" href="https://flex.symfony.com">https://flex.symfony.com</a>.</p>
+<p>O que esta receita fez? Além de ativar automaticamente o recurso em
+<code class="docutils literal notranslate">config/bundles.php</code>, ela adicionou 3 coisas:</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate">config/packages/twig.yaml</code></dt>
+<dd>Um arquivo de configuração que configura o Twig com padrões sensatos.</dd>
+<dt><code class="docutils literal notranslate">config/routes/dev/twig.yaml</code></dt>
+<dd>Uma rota que te ajuda a depurar suas páginas de erro.</dd>
+<dt><code class="docutils literal notranslate">templates/</code></dt>
+<dd>Este é o diretório onde os arquivos de template irão ficar. A receita também adicionou
+um arquivo de layout <code class="docutils literal notranslate">base.html.twig</code>.</dd>
+</dl>
+</div>
+<div class="section" id="twig-renderizando-um-template">
+<h2>Twig: Renderizando um Template<a class="headerlink" href="#twig-renderizando-um-template" title="Link permanente para este título">¶</a></h2>
+<p>Graças ao Flex, após um comando você pode começar a usar o Twig imediatamente:</p>
+<div class="literal-block"><div class="highlight-diff"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span>// src/Controller/DefaultController.php
+namespace App\Controller;
+
+use Symfony\Component\Routing\Annotation\Route;
+<span class="gd">- use Symfony\Component\HttpFoundation\Response;</span>
+<span class="gi">+ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;</span>
+
+<span class="gd">-class DefaultController</span>
+<span class="gi">+class DefaultController extends AbstractController</span>
+ {
+     /**
+      * @Route(&quot;/hello/{name}&quot;)
+      */
+     public function index($name)
+     {
+<span class="gd">-        return new Response(&quot;Olá, $name!&quot;);</span>
+<span class="gi">+        return $this-&gt;render(&#39;default/index.html.twig&#39;, [</span>
+<span class="gi">+            &#39;name&#39; =&gt; $name,</span>
+<span class="gi">+        ]);</span>
+     }
+}
+</pre></div>
+</td></tr></table></div></div>
+<p>Ao extender <code class="docutils literal notranslate">AbstractController</code>, você agora tem acesso a vários métodos de
+atalhos e ferramentas, como <code class="docutils literal notranslate">render()</code>. Crie um novo template:</p>
+<div class="literal-block"><div class="highlight-html+twig"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">{# templates/default/index.html.twig #}</span>
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Olá, <span class="cp">{{</span> <span class="nv">name</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>É isso aí! A sintaxe <code class="docutils literal notranslate">{{ name }}</code> irá imprimir a variável <code class="docutils literal notranslate">name</code> que é passada
+a partir do controller. Se você é nova no Twig, seja bem-vinda! Você aprenderá mais sobre
+sua sintaxe e poder posteriormente.</p>
+<p>Mas, por enquanto, a página contém <em>apenas</em> a tag <code class="docutils literal notranslate">h1</code>. Para dar a ela um layout HTML,
+extenda <code class="docutils literal notranslate">base.html.twig</code>:</p>
+<div class="literal-block"><div class="highlight-html+twig"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">{# templates/default/index.html.twig #}</span>
+<span class="cp">{%</span> <span class="k">extends</span> <span class="s1">&#39;base.html.twig&#39;</span> <span class="cp">%}</span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">body</span> <span class="cp">%}</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Olá, <span class="cp">{{</span> <span class="nv">name</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Isso é chamado de herança de template: nossa página agora herda a estrutura HTML de
+<code class="docutils literal notranslate">base.html.twig</code>.</p>
+</div>
+<div class="section" id="profiler-paraiso-da-depuracao">
+<h2>Profiler: Paraíso da Depuração<a class="headerlink" href="#profiler-paraiso-da-depuracao" title="Link permanente para este título">¶</a></h2>
+<p>Um dos recursos <em>mais legais</em> do Symfony ainda nem está instalado! Vamos consertar isso:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> composer require profiler
+</pre></div>
+</td></tr></table></div></div>
+<p>Sim! Este é outro alias! E o Flex <em>também</em> instala outra receita, que automatiza
+a configuração do Profiler do Symfony. Qual o resultado? Recarregue a página!</p>
+<p>Vê aquela barra preta na parte inferior da página? Essa é a barra de ferramentas de depuração web, e é sua nova
+melhor amiga. Ao passar o mouse sobre cada ícone você pode obter informações sobre qual controller
+foi executado, informações de desempenho, itens encontrados ou não em cache e muito mais. Clique em
+qualquer ícone para acessar o <em>profiler</em>, onde você tem dados de depuração e desempenho
+<em>ainda mais</em> detalhados!</p>
+<p>Ah, e à medida que você instala mais bibliotecas, você obtém mais ferramentas (como um ícone da barra de ferramentas de depuração
+web que mostra consultas ao banco de dados).</p>
+<p>Agora você pode usar diretamente o profiler porque ele <em>se</em> configurou graças à
+receita. O que mais podemos instalar?</p>
+</div>
+<div class="section" id="suporte-a-api-rica">
+<h2>Suporte a API Rica<a class="headerlink" href="#suporte-a-api-rica" title="Link permanente para este título">¶</a></h2>
+<p>Você está construindo uma API? Você já pode retornar JSON de qualquer controller:</p>
+<div class="literal-block"><div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// src/Controller/DefaultController.php</span>
+<span class="k">namespace</span> <span class="nx">App\Controller</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Symfony\Bundle\FrameworkBundle\Controller\AbstractController</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\Routing\Annotation\Route</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">DefaultController</span> <span class="k">extends</span> <span class="nx">AbstractController</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @Route(&quot;/api/hello/{name}&quot;)</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">apiExample</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">json</span><span class="p">([</span>
+            <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="nv">$name</span><span class="p">,</span>
+            <span class="s1">&#39;symfony&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;rocks&#39;</span><span class="p">,</span>
+        <span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Mas para uma API <em>verdadeiramente</em> rica, tente instalar a <a class="reference external" href="https://api-platform.com/">API Platform</a>:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> composer require api
+</pre></div>
+</td></tr></table></div></div>
+<p>Esse é um alias para <a class="reference internal" href="../setup.html#symfony-packs"><span>o pack do Symfony</span></a> <code class="docutils literal notranslate">api-platform/api-pack</code>,
+que depende de vários outros pacotes, como os componentes Symfony Security e
+Symfony Validator, além do Doctrine ORM. De fato, o Flex instalou <em>5</em> receitas!</p>
+<p>Mas, como de costume, podemos começar imediatamente a usar a nova biblioteca. Deseja criar uma
+API rica para uma tabela <code class="docutils literal notranslate">product</code>? Crie uma entidade <code class="docutils literal notranslate">Product</code> e adicione a
+anotação <code class="docutils literal notranslate">&#64;ApiResource()</code>:</p>
+<div class="literal-block"><div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// src/Entity/Product.php</span>
+<span class="k">namespace</span> <span class="nx">App\Entity</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">ApiPlatform\Core\Annotation\ApiResource</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Doctrine\ORM\Mapping</span> <span class="k">as</span> <span class="nx">ORM</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * @ORM\Entity()</span>
+<span class="sd"> * @ApiResource()</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">Product</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @ORM\Id</span>
+<span class="sd">     * @ORM\GeneratedValue(strategy=&quot;AUTO&quot;)</span>
+<span class="sd">     * @ORM\Column(type=&quot;integer&quot;)</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$id</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @ORM\Column(type=&quot;string&quot;)</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$name</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @ORM\Column(type=&quot;int&quot;)</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$price</span><span class="p">;</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Feito! Agora você tem endpoints para listar, adicionar, atualizar e excluir produtos! Não acredita
+em mim? Liste suas rotas executando:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> php bin/console debug:router
+
+<span class="go">------------------------------ -------- -------------------------------------</span>
+<span class="go"> Name                           Method   Path</span>
+<span class="go">------------------------------ -------- -------------------------------------</span>
+<span class="go"> api_products_get_collection    GET      /api/products.{_format}</span>
+<span class="go"> api_products_post_collection   POST     /api/products.{_format}</span>
+<span class="go"> api_products_get_item          GET      /api/products/{id}.{_format}</span>
+<span class="go"> api_products_put_item          PUT      /api/products/{id}.{_format}</span>
+<span class="go"> api_products_delete_item       DELETE   /api/products/{id}.{_format}</span>
+<span class="go"> ...</span>
+<span class="go">------------------------------ -------- -------------------------------------</span>
+</pre></div>
+</td></tr></table></div></div>
+</div>
+<div class="section" id="removendo-receitas">
+<h2>Removendo Receitas<a class="headerlink" href="#removendo-receitas" title="Link permanente para este título">¶</a></h2>
+<p>Ainda não está convencida? Não tem problema: remova a biblioteca:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> composer remove api
+</pre></div>
+</td></tr></table></div></div>
+<p>O Flex irá <em>desinstalar</em> as receitas: removendo arquivos e desfazendo mudanças para retornar
+a sua aplicação ao seu estado original. Experimente sem se preocupar.</p>
+</div>
+<div class="section" id="mais-recursos-arquitetura-e-velocidade">
+<h2>Mais Recursos, Arquitetura e Velocidade<a class="headerlink" href="#mais-recursos-arquitetura-e-velocidade" title="Link permanente para este título">¶</a></h2>
+<p>Espero que você esteja tão animada com o Flex quanto eu! Mas ainda temos <em>mais um</em> capítulo,
+e é o mais importante até agora. Quero mostrar como o Symfony permite que você crie recursos
+rapidamente <em>sem</em> sacrificar a qualidade do código ou o desempenho. Trata-se do
+container de serviços, e ele é o superpoder do Symfony. Continue lendo sobre: <a class="reference internal" href="the_architecture.html"><em>A Arquitetura</em></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="the_architecture.html" class="btn btn-neutral float-right" title="A Arquitetura" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="the_big_picture.html" class="btn btn-neutral" title="A Visão Geral" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'pt_BR',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

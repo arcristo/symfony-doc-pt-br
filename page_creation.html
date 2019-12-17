@@ -1,0 +1,619 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="pt-BR" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="pt-BR" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Crie sua Primeira Página no Symfony &mdash; Documentação do Symfony  documentação</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="next" title="Servidor Web Local do Symfony" href="setup/symfony_server.html" />
+    <link rel="prev" title="Instalando e Configurando o Symfony Framework" href="setup.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Documentação do Symfony
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="quick_tour/index.html">O Tour Rápido</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/index.html">Começando</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="mailer.html">Enviando E-mails com o Mailer</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="setup.html">Instalando e Configurando o Symfony Framework</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="setup.html#requisitos-tecnicos">Requisitos Técnicos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#criando-aplicacoes-symfony">Criando Aplicações Symfony</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#executando-aplicacoes-symfony">Executando Aplicações Symfony</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#configurando-um-projeto-symfony-existente">Configurando um Projeto Symfony Existente</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#instalando-pacotes">Instalando Pacotes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#verificando-vulnerabilidades-de-seguranca">Verificando Vulnerabilidades de Segurança</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#versoes-lts-do-symfony">Versões LTS do Symfony</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#a-aplicacao-symfony-demo">A Aplicação Symfony Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#comece-a-codar">Comece a Codar!</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="setup.html#aprenda-mais">Aprenda Mais</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="">Crie sua Primeira Página no Symfony</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#criando-uma-pagina-rota-e-controller">Criando uma Página: Rota e Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rotas-de-anotacao">Rotas de Anotação</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#instalacao-automatica-de-receitas-com-o-symfony-flex">Instalação Automática de Receitas com o Symfony Flex</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#o-comando-bin-console">O Comando bin/console</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-barra-de-ferramentas-de-depuracao-web-sonho-de-depuracao">A Barra de Ferramentas de Depuração Web: Sonho de Depuração</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renderizando-um-template">Renderizando um Template</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#conferindo-a-estrutura-do-projeto">Conferindo a Estrutura do Projeto</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#o-que-vem-a-seguir">O Que Vem a Seguir?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#va-mais-fundo-com-os-fundamentos-do-http-e-do-framework">Vá mais Fundo com os Fundamentos do HTTP e do Framework</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="setup/symfony_server.html">Servidor Web Local do Symfony</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="components/index.html">Os Componentes</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reference/index.html">Documentos de Referência</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing/index.html">Contribuindo</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="create_framework/index.html">Crie seu próprio Framework PHP</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Documentação do Symfony</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="getting_started/index.html">Começando</a> &raquo;</li>
+        
+          <li><a href="setup.html">Instalando e Configurando o Symfony Framework</a> &raquo;</li>
+        
+      <li>Crie sua Primeira Página no Symfony</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/adielcristo/symfony-doc-pt-br/blob/5.0/page_creation.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="crie-sua-primeira-pagina-no-symfony">
+<span id="creating-pages-in-symfony"></span><span id="creating-pages-in-symfony2"></span><span id="index-0"></span><h1>Crie sua Primeira Página no Symfony<a class="headerlink" href="#crie-sua-primeira-pagina-no-symfony" title="Link permanente para este título">¶</a></h1>
+<p>Criar uma nova página - seja uma página HTML ou um endpoint JSON - é um
+processo de duas etapas:</p>
+<ol class="arabic simple">
+<li><strong>Crie uma rota</strong>: Uma rota é o URL (por exemplo, <code class="docutils literal notranslate">/about</code>) da sua página e
+aponta para um controller;</li>
+<li><strong>Crie um controller</strong>: Um controller é a função PHP que você escreve que
+cria a página. Você pega as informações da requisição recebida e as usa para
+criar um objeto Symfony <code class="docutils literal notranslate">Response</code>, que pode conter conteúdo HTML, uma string
+JSON ou até mesmo um arquivo binário como uma imagem ou PDF.</li>
+</ol>
+<div class="screencast admonition-wrapper">
+<div class="admonition "><p class="first admonition-title">Screencast</p>
+<p class="last">Você prefere tutoriais em vídeo? Confira a série de screencasts
+<a class="reference external" href="https://symfonycasts.com/screencast/symfony/setup">Stellar Development with Symfony</a>.</p>
+</div></div>
+<div class="admonition-wrapper">
+<div class="admonition seealso">O Symfony <em>abraça</em> o ciclo de vida de requisição e resposta do HTTP. Para saber mais
+consulte <code class="xref doc docutils literal notranslate">/introduction/http_fundamentals</code>.</div></div>
+<div class="section" id="criando-uma-pagina-rota-e-controller">
+<span id="index-1"></span><h2>Criando uma Página: Rota e Controller<a class="headerlink" href="#criando-uma-pagina-rota-e-controller" title="Link permanente para este título">¶</a></h2>
+<div class="admonition-wrapper">
+<div class="admonition tip"><p class="first admonition-title">Dica</p>
+<p class="last">Antes de continuar, verifique se você já leu o artigo sobre <a class="reference internal" href="setup.html"><em>Instalação</em></a>
+e pode acessar sua nova aplicação Symfony no navegador.</p>
+</div></div>
+<p>Suponha que você queira criar uma página - <code class="docutils literal notranslate">/lucky/number</code> - que gera um número da sorte
+(na verdade, um número aleatório) e o imprime. Para fazer isso crie uma classe &quot;Controller&quot; e um
+método &quot;controller&quot; dentro dela:</p>
+<div class="literal-block"><div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="c1">// src/Controller/LuckyController.php</span>
+<span class="k">namespace</span> <span class="nx">App\Controller</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Symfony\Component\HttpFoundation\Response</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">LuckyController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">number</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$number</span> <span class="o">=</span> <span class="nx">random_int</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span>
+            <span class="s1">&#39;&lt;html&gt;&lt;body&gt;Número da sorte: &#39;</span><span class="o">.</span><span class="nv">$number</span><span class="o">.</span><span class="s1">&#39;&lt;/body&gt;&lt;/html&gt;&#39;</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Agora você precisa associar esta função controller a um URL público (por exemplo, <code class="docutils literal notranslate">/lucky/number</code>)
+para que o método <code class="docutils literal notranslate">number()</code> seja executado quando um usuário acessar este URL. Esta associação
+é definida criando uma <strong>rota</strong> no arquivo <code class="docutils literal notranslate">config/routes.yaml</code>:</p>
+<div class="literal-block"><div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># config/routes.yaml</span>
+
+<span class="c1"># o nome da rota &quot;app_lucky_number&quot; ainda não é importante</span>
+<span class="l l-Scalar l-Scalar-Plain">app_lucky_number</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/lucky/number</span>
+    <span class="l l-Scalar l-Scalar-Plain">controller</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">App\Controller\LuckyController::number</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>É isso aí! Se você estiver usando o servidor web Symfony, teste a rota acessando:</p>
+<blockquote>
+<div><a class="reference external" href="http://localhost:8000/lucky/number">http://localhost:8000/lucky/number</a></div></blockquote>
+<p>Se você vir um número da sorte sendo impresso para você, parabéns! Mas antes de
+correr para jogar na loteria, confira como isso funciona. Lembra das duas etapas
+para criar uma página?</p>
+<ol class="arabic simple">
+<li><em>Crie uma rota</em>: Em <code class="docutils literal notranslate">config/routes.yaml</code> a rota define o URL da sua
+página (<code class="docutils literal notranslate">path</code>) e qual <code class="docutils literal notranslate">controller</code> chamar. Você aprenderá mais sobre <code class="xref doc docutils literal notranslate">roteamento</code>
+em sua própria seção, incluindo como criar URLs <em>variáveis</em>;</li>
+<li><em>Crie um controller</em>: É uma função onde <em>você</em> cria a página e, finalmente,
+retorna um objeto <code class="docutils literal notranslate">Response</code>. Você aprenderá mais sobre <code class="xref doc docutils literal notranslate">controllers</code>
+em sua própria seção, incluindo como retornar respostas JSON.</li>
+</ol>
+</div>
+<div class="section" id="rotas-de-anotacao">
+<span id="annotation-routes"></span><h2>Rotas de Anotação<a class="headerlink" href="#rotas-de-anotacao" title="Link permanente para este título">¶</a></h2>
+<p>Em vez de definir sua rota em YAML, o Symfony também permite que você use rotas de
+<em>anotação</em>. Para fazer isso instale o pacote de anotações:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> composer require annotations
+</pre></div>
+</td></tr></table></div></div>
+<p>Agora você pode adicionar sua rota diretamente <em>acima</em> do controller:</p>
+<div class="literal-block"><div class="highlight-diff"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span>// src/Controller/LuckyController.php
+
+// ...
+<span class="gi">+ use Symfony\Component\Routing\Annotation\Route;</span>
+
+class LuckyController
+{
+<span class="gi">+     /**</span>
+<span class="gi">+      * @Route(&quot;/lucky/number&quot;)</span>
+<span class="gi">+      */</span>
+    public function number()
+    {
+        // isso continua o mesmo
+    }
+}
+</pre></div>
+</td></tr></table></div></div>
+<p>É isso aí! A página - <code class="docutils literal notranslate">http://localhost:8000/lucky/number</code> funcionará exatamente
+como antes! As anotações são a maneira recomendada de configurar rotas.</p>
+</div>
+<div class="section" id="instalacao-automatica-de-receitas-com-o-symfony-flex">
+<span id="flex-quick-intro"></span><h2>Instalação Automática de Receitas com o Symfony Flex<a class="headerlink" href="#instalacao-automatica-de-receitas-com-o-symfony-flex" title="Link permanente para este título">¶</a></h2>
+<p>Você pode não ter percebido, mas quando você executou <code class="docutils literal notranslate">composer require annotations</code>, duas
+coisas incríveis aconteceram, ambas graças a um poderoso plug-in do Composer chamado
+<a class="reference internal" href="setup.html#symfony-flex"><span>Flex</span></a>.</p>
+<p>Primeiro, <code class="docutils literal notranslate">annotations</code> não é um nome real de pacote: é um <em>alias</em> (ou seja, um atalho)
+que o Flex resolve para <code class="docutils literal notranslate">sensio/framework-extra-bundle</code>.</p>
+<p>Segundo, após o download deste pacote, o Flex executou uma <em>receita</em>, que é um
+conjunto de instruções automatizadas que diz ao Symfony como integrar um pacote
+externo. Existem <a class="reference external" href="https://flex.symfony.com">receitas do Flex</a> para muitos pacotes e elas têm a habilidade
+de fazer muita coisa, como adicionar arquivos de configuração, criar diretórios, atualizar o <code class="docutils literal notranslate">.gitignore</code>
+e adicionar novas configurações ao seu arquivo <code class="docutils literal notranslate">.env</code>. O Flex <em>automatiza</em> a instalação de
+pacotes para que você possa voltar a codar.</p>
+</div>
+<div class="section" id="o-comando-bin-console">
+<h2>O Comando bin/console<a class="headerlink" href="#o-comando-bin-console" title="Link permanente para este título">¶</a></h2>
+<p>Seu projeto já possui uma poderosa ferramenta de depuração: o comando <code class="docutils literal notranslate">bin/console</code>.
+Tente executá-lo:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> php bin/console
+</pre></div>
+</td></tr></table></div></div>
+<p>Você deve ver uma lista de comandos que podem fornecer informações sobre depuração, ajudar a gerar
+código, gerar migrações de banco de dados e muito mais. Ao instalar mais pacotes
+você verá mais comandos.</p>
+<p>Para obter uma lista de <em>todas</em> as rotas no seu sistema use o comando <code class="docutils literal notranslate">debug:router</code>:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> php bin/console debug:router
+</pre></div>
+</td></tr></table></div></div>
+<p>Você deve ver a sua rota <code class="docutils literal notranslate">app_lucky_number</code> no topo da lista:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="15%" />
+<col width="15%" />
+<col width="11%" />
+<col width="27%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Method</th>
+<th class="head">Scheme</th>
+<th class="head">Host</th>
+<th class="head">Path</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>app_lucky_number</td>
+<td>ANY</td>
+<td>ANY</td>
+<td>ANY</td>
+<td>/lucky/number</td>
+</tr>
+</tbody>
+</table>
+<p>Você também verá rotas de depuração abaixo de <code class="docutils literal notranslate">app_lucky_number</code> -- veremos mais sobre
+as rotas de depuração na próxima seção.</p>
+<p>Você aprenderá sobre muitos outros comandos à medida que continua!</p>
+</div>
+<div class="section" id="a-barra-de-ferramentas-de-depuracao-web-sonho-de-depuracao">
+<h2>A Barra de Ferramentas de Depuração Web: Sonho de Depuração<a class="headerlink" href="#a-barra-de-ferramentas-de-depuracao-web-sonho-de-depuracao" title="Link permanente para este título">¶</a></h2>
+<p>Um dos <em>principais</em> recursos do Symfony é a Barra de Ferramentas de Depuração Web: uma barra que exibe
+uma <em>enorme</em> quantidade de informações de depuração na parte inferior da página durante
+o desenvolvimento. Tudo isso é incluído pronto para uso usando um <a class="reference internal" href="setup.html#symfony-packs"><span>pack do Symfony</span></a>
+chamado <code class="docutils literal notranslate">symfony/profiler-pack</code>.</p>
+<p>Você verá uma barra preta na parte inferior da página. Você aprenderá mais sobre todas as informações que ela contém
+ao longo do caminho, mas sinta-se à vontade para experimentar: passe o mouse e clique
+nos diferentes ícones para obter informações sobre roteamento, desempenho, logging e muito mais.</p>
+</div>
+<div class="section" id="renderizando-um-template">
+<h2>Renderizando um Template<a class="headerlink" href="#renderizando-um-template" title="Link permanente para este título">¶</a></h2>
+<p>Se você estiver retornando HTML do seu controller, provavelmente vai querer renderizar
+um template. Felizmente, o Symfony vem com o <a class="reference external" href="https://twig.symfony.com">Twig</a>: uma linguagem de templating
+fácil, poderosa e realmente divertida.</p>
+<p>Instale o pacote twig com:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> composer require twig
+</pre></div>
+</td></tr></table></div></div>
+<p>Certifique-se de que <code class="docutils literal notranslate">LuckyController</code> extende a classe base
+<code class="docutils literal notranslate"><a class="reference external" href="http://api.symfony.com/master/Symfony/Bundle/FrameworkBundle/Controller/AbstractController.html" title="Symfony\Bundle\FrameworkBundle\Controller\AbstractController">AbstractController</a></code> do Symfony:</p>
+<div class="literal-block"><div class="highlight-diff"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span>// src/Controller/LuckyController.php
+
+// ...
+<span class="gi">+ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;</span>
+
+<span class="gd">- class LuckyController</span>
+<span class="gi">+ class LuckyController extends AbstractController</span>
+{
+    // ...
+}
+</pre></div>
+</td></tr></table></div></div>
+<p>Agora use a conveniente função <code class="docutils literal notranslate">render()</code> para renderizar um template. Passe uma variável
+<code class="docutils literal notranslate">number</code> para que você possa usá-la no Twig:</p>
+<div class="literal-block"><div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// src/Controller/LuckyController.php</span>
+<span class="k">namespace</span> <span class="nx">App\Controller</span><span class="p">;</span>
+
+<span class="c1">// ...</span>
+<span class="k">class</span> <span class="nc">LuckyController</span> <span class="k">extends</span> <span class="nx">AbstractController</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @Route(&quot;/lucky/number&quot;)</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">number</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$number</span> <span class="o">=</span> <span class="nx">random_int</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="s1">&#39;lucky/number.html.twig&#39;</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">&#39;number&#39;</span> <span class="o">=&gt;</span> <span class="nv">$number</span><span class="p">,</span>
+        <span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Os arquivos de template ficam no diretório <code class="docutils literal notranslate">templates/</code>, criado automaticamente para você
+quando você instalou o Twig. Crie um novo diretório <code class="docutils literal notranslate">templates/lucky</code> com um novo
+arquivo <code class="docutils literal notranslate">number.html.twig</code> dentro:</p>
+<div class="literal-block"><div class="highlight-html+twig"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">{# templates/lucky/number.html.twig #}</span>
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Seu número da sorte é <span class="cp">{{</span> <span class="nv">number</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>A sintaxe <code class="docutils literal notranslate">{{ number }}</code> é usada para <em>imprimir</em> variáveis no Twig. Atualize seu navegador
+para obter seu <em>novo</em> número da sorte!</p>
+<blockquote>
+<div><a class="reference external" href="http://localhost:8000/lucky/number">http://localhost:8000/lucky/number</a></div></blockquote>
+<p>Agora você pode se perguntar para onde foi a Barra de Ferramentas de Depuração Web: isso acontece porque não
+existe uma tag <code class="docutils literal notranslate">&lt;/body&gt;</code> no template atual. Você mesmo pode adicionar o elemento body,
+ou pode extender <code class="docutils literal notranslate">base.html.twig</code>, que contém todos os elementos HTML padrão.</p>
+<p>No artigo sobre <code class="xref doc docutils literal notranslate">templates</code> você aprenderá tudo sobre o Twig: como
+fazer loop, renderizar outros templates e aproveitar seu poderoso sistema de herança de layout.</p>
+</div>
+<div class="section" id="conferindo-a-estrutura-do-projeto">
+<h2>Conferindo a Estrutura do Projeto<a class="headerlink" href="#conferindo-a-estrutura-do-projeto" title="Link permanente para este título">¶</a></h2>
+<p>Ótimas notícias! Você já trabalhou nos diretórios mais importantes do seu
+projeto:</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate">config/</code></dt>
+<dd>Contém... configurações! Você irá configurar rotas,
+<code class="xref doc docutils literal notranslate">serviços</code> e pacotes.</dd>
+<dt><code class="docutils literal notranslate">src/</code></dt>
+<dd>Todo o seu código PHP fica aqui.</dd>
+<dt><code class="docutils literal notranslate">templates/</code></dt>
+<dd>Todos os seus templates Twig ficam aqui.</dd>
+</dl>
+<p>Na maioria das vezes você irá trabalhar em <code class="docutils literal notranslate">src/</code>, <code class="docutils literal notranslate">templates/</code> ou <code class="docutils literal notranslate">config/</code>.
+Enquanto continua lendo, você aprenderá o que pode ser feito em cada um destes diretórios.</p>
+<p>E os outros diretórios do projeto?</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate">bin/</code></dt>
+<dd>O famoso arquivo <code class="docutils literal notranslate">bin/console</code> fica aqui (e outros arquivos executáveis
+menos importantes).</dd>
+<dt><code class="docutils literal notranslate">var/</code></dt>
+<dd>É aqui que os arquivos criados automaticamente são armazenados, como arquivos de cache
+(<code class="docutils literal notranslate">var/cache/</code>) e logs (<code class="docutils literal notranslate">var/log/</code>).</dd>
+<dt><code class="docutils literal notranslate">vendor/</code></dt>
+<dd>As bibliotecas de terceiros (ou seja, &quot;vendor&quot;) ficam aqui! Elas são baixadas através do gerenciador
+de pacotes <a class="reference external" href="https://getcomposer.org">Composer</a>.</dd>
+<dt><code class="docutils literal notranslate">public/</code></dt>
+<dd>Este é o diretório público do seu projeto: você coloca todos os arquivos acessíveis ao público
+aqui.</dd>
+</dl>
+<p>E quando você instalar novos pacotes, novos diretórios serão criados automaticamente
+quando necessário.</p>
+</div>
+<div class="section" id="o-que-vem-a-seguir">
+<h2>O Que Vem a Seguir?<a class="headerlink" href="#o-que-vem-a-seguir" title="Link permanente para este título">¶</a></h2>
+<p>Parabéns! Você já está começando a dominar o Symfony e a aprender uma nova
+maneira de criar aplicações bonitas, funcionais, rápidas e de fácil manutenção.</p>
+<p>Certo, é hora de terminar de dominar os fundamentos lendo estes artigos:</p>
+<ul class="simple">
+<li><code class="xref doc docutils literal notranslate">/routing</code></li>
+<li><code class="xref doc docutils literal notranslate">/controller</code></li>
+<li><code class="xref doc docutils literal notranslate">/templates</code></li>
+<li><code class="xref doc docutils literal notranslate">/configuration</code></li>
+</ul>
+<p>Em seguida, aprenda sobre outros tópicos importantes como o
+<code class="xref doc docutils literal notranslate">container de serviços</code>,
+o <code class="xref doc docutils literal notranslate">sistema de formulários</code>, como usar o <code class="xref doc docutils literal notranslate">Doctrine</code>
+(se você precisar consultar um banco de dados) e muito mais!</p>
+<p>Divirta-se!</p>
+</div>
+<div class="section" id="va-mais-fundo-com-os-fundamentos-do-http-e-do-framework">
+<h2>Vá mais Fundo com os Fundamentos do HTTP e do Framework<a class="headerlink" href="#va-mais-fundo-com-os-fundamentos-do-http-e-do-framework" title="Link permanente para este título">¶</a></h2>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="setup/symfony_server.html" class="btn btn-neutral float-right" title="Servidor Web Local do Symfony" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="setup.html" class="btn btn-neutral" title="Instalando e Configurando o Symfony Framework" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'pt_BR',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

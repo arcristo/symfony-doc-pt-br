@@ -1,0 +1,438 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="pt-BR" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="pt-BR" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>O Componente ErrorHandler &mdash; Documentação do Symfony  documentação</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="next" title="Documentos de Referência" href="../reference/index.html" />
+    <link rel="prev" title="Os Componentes" href="index.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Documentação do Symfony
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick_tour/index.html">O Tour Rápido</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Começando</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../mailer.html">Enviando E-mails com o Mailer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">Instalando e Configurando o Symfony Framework</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Os Componentes</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">O Componente ErrorHandler</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#instalacao">Instalação</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uso">Uso</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transformando-erros-php-em-excecoes">Transformando Erros PHP em Exceções</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#capturando-erros-de-funcao-php-e-transformando-os-em-excecoes">Capturando Erros de Função PHP e Transformando-os em Exceções</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#depurando-excecoes-do-php-nao-capturadas">Depurando Exceções do PHP Não Capturadas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#depurador-de-carregamento-de-classe">Depurador de Carregamento de Classe</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Documentos de Referência</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../create_framework/index.html">Crie seu próprio Framework PHP</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Documentação do Symfony</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Os Componentes</a> &raquo;</li>
+        
+      <li>O Componente ErrorHandler</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/adielcristo/symfony-doc-pt-br/blob/5.0/components/error_handler.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="o-componente-errorhandler">
+<span id="index-0"></span><h1>O Componente ErrorHandler<a class="headerlink" href="#o-componente-errorhandler" title="Link permanente para este título">¶</a></h1>
+<blockquote>
+<div>O componente ErrorHandler disponibiliza ferramentas para gerenciar erros e facilitar
+a depuração de código PHP.</div></blockquote>
+<div class="section" id="instalacao">
+<h2>Instalação<a class="headerlink" href="#instalacao" title="Link permanente para este título">¶</a></h2>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> composer require symfony/error-handler
+</pre></div>
+</td></tr></table></div></div>
+</div>
+<div class="section" id="uso">
+<h2>Uso<a class="headerlink" href="#uso" title="Link permanente para este título">¶</a></h2>
+<p>O componente ErrorHandler fornece várias ferramentas para ajudá-lo a depurar código PHP:</p>
+<ul class="simple">
+<li>Um <strong>manipulador de erros</strong> que transforma erros PHP em exceções;</li>
+<li>Um <strong>manipulador de exceções</strong> que transforma exceções não capturadas do PHP em respostas PHP melhoradas;</li>
+<li>Um <strong>carregador de classes de depuração</strong> que fornece erros melhores quando uma classe não é encontrada.</li>
+</ul>
+<p>Chame o método abaixo (por exemplo, no seu <span class="xref std std-ref">front controller</span>)
+para habilitar todos esses recursos em sua aplicação:</p>
+<div class="literal-block"><div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// public/index.php</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\ErrorHandler\Debug</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;APP_DEBUG&#39;</span><span class="p">])</span> <span class="p">{</span>
+    <span class="nx">Debug</span><span class="o">::</span><span class="na">enable</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// ...</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Continue lendo este artigo para saber mais sobre esses recursos, incluindo como
+habilitar cada um deles separadamente.</p>
+<div class="admonition-wrapper">
+<div class="admonition caution"><p class="first admonition-title">Cuidado</p>
+<p class="last">Você nunca deve habilitar as ferramentas de depuração, exceto o manipulador de erros, em um
+ambiente de produção, pois eles podem exibir informações confidenciais ao usuário.</p>
+</div></div>
+</div>
+<div class="section" id="transformando-erros-php-em-excecoes">
+<h2>Transformando Erros PHP em Exceções<a class="headerlink" href="#transformando-erros-php-em-excecoes" title="Link permanente para este título">¶</a></h2>
+<p>A classe <code class="docutils literal notranslate"><a class="reference external" href="http://api.symfony.com/master/Symfony/Component/ErrorHandler/ErrorHandler.html" title="Symfony\Component\ErrorHandler\ErrorHandler">ErrorHandler</a></code> captura os erros PHP
+e os transforma em objetos <code class="docutils literal notranslate"><a class="reference external" href="http://php.net/manual/en/class.errorexception.php" title="ErrorException">ErrorException</a></code> do PHP, com exceção dos
+erros fatais do PHP, que são transformados em objetos
+<code class="docutils literal notranslate"><a class="reference external" href="http://api.symfony.com/master/Symfony/Component/ErrorHandler/Exception/FatalErrorException.html" title="Symfony\Component\ErrorHandler\Exception\FatalErrorException">FatalErrorException</a></code> do Symfony.</p>
+<p>Se a aplicação usar o FrameworkBundle, esse manipulador de erros será ativado por
+padrão no <span class="xref std std-ref">ambiente de produção</span>
+pois gera melhores logs de erro.</p>
+<p>Use o seguinte código (por exemplo, no seu <span class="xref std std-ref">front controller</span>)
+para habilitar esse manipulador de erros:</p>
+<div class="literal-block"><div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Symfony\Component\ErrorHandler\ErrorHandler</span><span class="p">;</span>
+
+<span class="nx">ErrorHandler</span><span class="o">::</span><span class="na">register</span><span class="p">();</span>
+</pre></div>
+</td></tr></table></div></div>
+<div class="admonition-wrapper">
+<div class="admonition tip"><p class="first admonition-title">Dica</p>
+<p class="last">Se você deseja obter páginas de exceção ainda melhores, instale também o
+<code class="xref doc docutils literal notranslate">componente ErrorRenderer</code>.</p>
+</div></div>
+<div class="section" id="capturando-erros-de-funcao-php-e-transformando-os-em-excecoes">
+<h3>Capturando Erros de Função PHP e Transformando-os em Exceções<a class="headerlink" href="#capturando-erros-de-funcao-php-e-transformando-os-em-excecoes" title="Link permanente para este título">¶</a></h3>
+<p>Considere o seguinte exemplo:</p>
+<div class="literal-block"><div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nb">file_get_contents</span><span class="p">(</span><span class="nv">$filename</span><span class="p">),</span> <span class="k">true</span><span class="p">);</span>
+<span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;read_at&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">date</span><span class="p">(</span><span class="nv">$datetimeFormat</span><span class="p">);</span>
+<span class="nb">file_put_contents</span><span class="p">(</span><span class="nv">$filename</span><span class="p">,</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$data</span><span class="p">));</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>A maioria das principais funções do PHP foram escritas antes da introdução do tratamento de exceções,
+então, elas retornam <code class="docutils literal notranslate">false</code> ou <code class="docutils literal notranslate">null</code> em caso de erro, em vez de lançar uma
+exceção. É por isso que você precisa adicionar algo assim para verificar se há erros:</p>
+<div class="literal-block"><div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nv">$content</span> <span class="o">=</span> <span class="o">@</span><span class="nb">file_get_contents</span><span class="p">(</span><span class="nv">$filename</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">false</span> <span class="o">===</span> <span class="nv">$content</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nx">\RuntimeException</span><span class="p">(</span><span class="s1">&#39;Could not load file.&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// since PHP 7.3 json_decode() defines an option to throw JSON_THROW_ON_ERROR</span>
+<span class="c1">// but you need to enable that option explicitly</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="o">@</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$content</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">null</span> <span class="o">===</span> <span class="nv">$data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nx">\RuntimeException</span><span class="p">(</span><span class="s1">&#39;File does not contain valid JSON.&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nv">$datetime</span> <span class="o">=</span> <span class="o">@</span><span class="nb">date</span><span class="p">(</span><span class="nv">$datetimeFormat</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">false</span> <span class="o">===</span> <span class="nv">$datetime</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nx">\RuntimeException</span><span class="p">(</span><span class="s1">&#39;Invalid datetime format.&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Para simplificar esse código, a classe <code class="docutils literal notranslate"><a class="reference external" href="http://api.symfony.com/master/Symfony/Component/ErrorHandler/ErrorHandler.html" title="Symfony\Component\ErrorHandler\ErrorHandler">ErrorHandler</a></code>
+fornece um método <code class="docutils literal notranslate"><a class="reference external" href="http://api.symfony.com/master/Symfony/Component/ErrorHandler/ErrorHandler.html#method_call" title="Symfony\Component\ErrorHandler\ErrorHandler::call()">call()</a></code>
+que lança uma exceção automaticamente quando ocorre um erro PHP:</p>
+<div class="literal-block"><div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nv">$content</span> <span class="o">=</span> <span class="nx">ErrorHandler</span><span class="o">::</span><span class="na">call</span><span class="p">(</span><span class="s1">&#39;file_get_contents&#39;</span><span class="p">,</span> <span class="nv">$filename</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>O primeiro argumento de <code class="docutils literal notranslate">call()</code> é o nome da função PHP que será executada e
+o restante dos argumentos são passados para a função PHP. O resultado da função PHP
+é retornado como resultado de <code class="docutils literal notranslate">call()</code>.</p>
+<p>É possível passar qualquer callable PHP como primeiro argumento de <code class="docutils literal notranslate">call()</code>, para que você possa
+agrupar várias chamadas de função dentro de uma função anônima:</p>
+<div class="literal-block"><div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="nx">ErrorHandler</span><span class="o">::</span><span class="na">call</span><span class="p">(</span><span class="k">static</span> <span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$filename</span><span class="p">,</span> <span class="nv">$datetimeFormat</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// if any code executed inside this anonymous function fails, a PHP exception</span>
+    <span class="c1">// will be thrown, even if the code uses the &#39;@&#39; PHP silence operator</span>
+    <span class="nv">$data</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nb">file_get_contents</span><span class="p">(</span><span class="nv">$filename</span><span class="p">),</span> <span class="k">true</span><span class="p">);</span>
+    <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;read_at&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">date</span><span class="p">(</span><span class="nv">$datetimeFormat</span><span class="p">);</span>
+    <span class="nb">file_put_contents</span><span class="p">(</span><span class="nv">$filename</span><span class="p">,</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$data</span><span class="p">));</span>
+
+    <span class="k">return</span> <span class="nv">$data</span><span class="p">;</span>
+<span class="p">});</span>
+</pre></div>
+</td></tr></table></div></div>
+</div>
+</div>
+<div class="section" id="depurando-excecoes-do-php-nao-capturadas">
+<h2>Depurando Exceções do PHP Não Capturadas<a class="headerlink" href="#depurando-excecoes-do-php-nao-capturadas" title="Link permanente para este título">¶</a></h2>
+<p>A classe <code class="docutils literal notranslate"><a class="reference external" href="http://api.symfony.com/master/Symfony/Component/ErrorHandler/ExceptionHandler.html" title="Symfony\Component\ErrorHandler\ExceptionHandler">ExceptionHandler</a></code> captura
+exceções não detectadas do PHP e as transforma em uma resposta melhorada, para que você possa
+depurará-las. É conveniente no <span class="xref std std-ref">modo debug</span> para substituir a saída padrão
+do PHP/XDebug por algo mais bonito e útil.</p>
+<p>Se o <code class="xref doc docutils literal notranslate">componente HttpFoundation</code> estiver
+disponível, o manipulador retorna um objeto
+<code class="docutils literal notranslate"><a class="reference external" href="http://api.symfony.com/master/Symfony/Component/HttpFoundation/Response.html" title="Symfony\Component\HttpFoundation\Response">Response</a></code> do Symfony. Caso contrário,
+ele retorna uma resposta PHP genérica.</p>
+<p>Use o seguinte código (por exemplo, no seu <span class="xref std std-ref">front controller</span>)
+para habilitar esse manipulador de exceção:</p>
+<div class="literal-block"><div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Symfony\Component\ErrorHandler\ExceptionHandler</span><span class="p">;</span>
+
+<span class="nx">ExceptionHandler</span><span class="o">::</span><span class="na">register</span><span class="p">();</span>
+</pre></div>
+</td></tr></table></div></div>
+<div class="admonition-wrapper">
+<div class="admonition tip"><p class="first admonition-title">Dica</p>
+<p class="last">Se você deseja obter páginas de exceção ainda melhores, instale o
+<code class="xref doc docutils literal notranslate">componente ErrorRenderer</code> também.</p>
+</div></div>
+</div>
+<div class="section" id="depurador-de-carregamento-de-classe">
+<span id="component-debug-class-loader"></span><h2>Depurador de Carregamento de Classe<a class="headerlink" href="#depurador-de-carregamento-de-classe" title="Link permanente para este título">¶</a></h2>
+<p>A classe <code class="docutils literal notranslate"><a class="reference external" href="http://api.symfony.com/master/Symfony/Component/ErrorHandler/DebugClassLoader.html" title="Symfony\Component\ErrorHandler\DebugClassLoader">DebugClassLoader</a></code> lança
+exceções mais úteis quando uma classe não é encontrada pelos carregadores automáticos registrados
+(por exemplo, procura erros de digitação nos nomes das classes e sugere o nome correto da classe).</p>
+<p>Na prática, esse depurador procura todos os carregadores automáticos registrados que implementam um
+método <code class="docutils literal notranslate">findFile()</code> e os substitui por seu próprio método para encontrar arquivos de classe.</p>
+<p>Use o seguinte código (por exemplo, no seu <span class="xref std std-ref">front controller</span>)
+para habilitar esse depurador de carregamento de classe:</p>
+<div class="literal-block"><div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Symfony\Component\ErrorHandler\DebugClassLoader</span><span class="p">;</span>
+
+<span class="nx">DebugClassLoader</span><span class="o">::</span><span class="na">enable</span><span class="p">();</span>
+</pre></div>
+</td></tr></table></div></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../reference/index.html" class="btn btn-neutral float-right" title="Documentos de Referência" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Os Componentes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'pt_BR',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

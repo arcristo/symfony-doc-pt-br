@@ -1,0 +1,483 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="pt-BR" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="pt-BR" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>A Visão Geral &mdash; Documentação do Symfony  documentação</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="next" title="Flex: Componha sua Aplicação" href="flex_recipes.html" />
+    <link rel="prev" title="O Tour Rápido" href="index.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Documentação do Symfony
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">O Tour Rápido</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">A Visão Geral</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#baixando-o-symfony">Baixando o Symfony</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fundamentos-rota-controller-resposta">Fundamentos: Rota, Controller, Resposta</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="flex_recipes.html">Flex: Componha sua Aplicação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="the_architecture.html">A Arquitetura</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Começando</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../mailer.html">Enviando E-mails com o Mailer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">Instalando e Configurando o Symfony Framework</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../components/index.html">Os Componentes</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Documentos de Referência</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../create_framework/index.html">Crie seu próprio Framework PHP</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Documentação do Symfony</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">O Tour Rápido</a> &raquo;</li>
+        
+      <li>A Visão Geral</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/adielcristo/symfony-doc-pt-br/blob/5.0/quick_tour/the_big_picture.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="a-visao-geral">
+<h1>A Visão Geral<a class="headerlink" href="#a-visao-geral" title="Link permanente para este título">¶</a></h1>
+<p>Comece a usar o Symfony em 10 minutos! Sério! É tudo que você precisa para entender os
+conceitos mais importantes e começar a construir um projeto real!</p>
+<p>Se você já usou um framework web antes, deve se sentir em casa com
+o Symfony. Caso contrário, seja bem-vinda a uma maneira totalmente nova de desenvolver aplicações web. O Symfony
+<em>abraça</em> as melhores práticas, mantém a compatibilidade com versões anteriores (Sim! A atualização é sempre
+fácil e segura!) e oferece suporte a longo prazo.</p>
+<div class="section" id="baixando-o-symfony">
+<span id="installing-symfony2"></span><h2>Baixando o Symfony<a class="headerlink" href="#baixando-o-symfony" title="Link permanente para este título">¶</a></h2>
+<p>Primeiro, verifique se você instalou o <a class="reference external" href="https://getcomposer.org/">Composer</a> e possui o PHP 7.1.3 ou superior.</p>
+<p>Preparada? Em um terminal execute:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> composer create-project symfony/skeleton tour-rapido
+</pre></div>
+</td></tr></table></div></div>
+<p>Isso cria um novo diretório <code class="docutils literal notranslate">tour-rapido/</code> com uma pequena, mas poderosa nova
+aplicação Symfony:</p>
+<div class="literal-block"><div class="highlight-text"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span>tour-rapido/
+├─ .env
+├─ bin/console
+├─ composer.json
+├─ composer.lock
+├─ config/
+├─ public/index.php
+├─ src/
+├─ symfony.lock
+├─ var/
+└─ vendor/
+</pre></div>
+</td></tr></table></div></div>
+<p>Já podemos carregar o projeto em um navegador? Sim! Você pode configurar
+<code class="xref doc docutils literal notranslate">o Nginx ou o Apache</code> e configurar o
+diretório público como o diretório <code class="docutils literal notranslate">public/</code>. Mas, para desenvolvimento, é melhor
+<a class="reference internal" href="../setup/symfony_server.html"><em>instalar o servidor web local Symfony</em></a> e executá-lo
+da seguinte maneira:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> symfony server:start
+</pre></div>
+</td></tr></table></div></div>
+<p>Teste sua nova aplicação acessando <code class="docutils literal notranslate">http://localhost:8000</code> em um navegador!</p>
+<img alt="../_images/no_routes_page.png" class="with-browser align-center" src="../_images/no_routes_page.png" />
+</div>
+<div class="section" id="fundamentos-rota-controller-resposta">
+<h2>Fundamentos: Rota, Controller, Resposta<a class="headerlink" href="#fundamentos-rota-controller-resposta" title="Link permanente para este título">¶</a></h2>
+<p>Nosso projeto tem apenas uns 15 arquivos, mas está pronto para se tornar uma elegante API, uma
+aplicação web robusta, ou um microsserviço. O Symfony começa pequeno, mas escala com você.</p>
+<p>Mas antes de irmos longe demais, vamos nos aprofundar nos fundamentos construindo nossa primeira página.</p>
+<p>Comece em <code class="docutils literal notranslate">config/routes.yaml</code>: aqui é onde <em>nós</em> podemos definir o URL para nossa nova
+página. Remova o comentário do exemplo que já está no arquivo:</p>
+<div class="literal-block"><div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># config/routes.yaml</span>
+<span class="l l-Scalar l-Scalar-Plain">index</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/</span>
+    <span class="l l-Scalar l-Scalar-Plain">controller</span><span class="p p-Indicator">:</span> <span class="s">&#39;App\Controller\DefaultController::index&#39;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Isso é uma <em>rota</em>: ela define o URL da sua página (<code class="docutils literal notranslate">/</code>) e o &quot;controller&quot;:
+a <em>função</em> que será chamada sempre que alguém acessar esse URL. Essa função
+não existe ainda, então vamos criá-la!</p>
+<p>Em <code class="docutils literal notranslate">src/Controller</code>, crie uma nova classe <code class="docutils literal notranslate">DefaultController</code> e um método <code class="docutils literal notranslate">index</code>
+dentro dela:</p>
+<div class="literal-block"><div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// src/Controller/DefaultController.php</span>
+<span class="k">namespace</span> <span class="nx">App\Controller</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Symfony\Component\HttpFoundation\Response</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">DefaultController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span><span class="s1">&#39;Olá!&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>É isso aí! Tente ir para a página inicial: <code class="docutils literal notranslate">http://localhost:8000/</code>. O Symfony vê
+que o URL corresponde à nossa rota e então executa o novo método <code class="docutils literal notranslate">index()</code>.</p>
+<p>Um controller é apenas uma função normal com <em>uma</em> regra: ela deve retornar um objeto
+Symfony <code class="docutils literal notranslate">Response</code>. Mas essa resposta pode conter qualquer coisa: texto simples, JSON ou
+uma página HTML completa.</p>
+<p>Mas o sistema de roteamento é <em>muito</em> mais poderoso. Então vamos tornar a rota mais interessante:</p>
+<div class="literal-block"><div class="highlight-diff"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span># config/routes.yaml
+<span class="gh">index:</span>
+<span class="gd">-     path: /</span>
+<span class="gi">+     path: /hello/{name}</span>
+    controller: &#39;App\Controller\DefaultController::index&#39;
+</pre></div>
+</td></tr></table></div></div>
+<p>O URL desta página mudou: ele <em>agora</em> é <code class="docutils literal notranslate">/hello/*</code>: o <code class="docutils literal notranslate">{name}</code> funciona
+como um curinga que corresponde a qualquer coisa. E fica melhor! Atualize o controller também:</p>
+<div class="literal-block"><div class="highlight-diff"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span>// src/Controller/DefaultController.php
+namespace App\Controller;
+
+use Symfony\Component\HttpFoundation\Response;
+
+class DefaultController
+{
+<span class="gd">-     public function index()</span>
+<span class="gi">+     public function index($name)</span>
+    {
+<span class="gd">-         return new Response(&#39;Olá!&#39;);</span>
+<span class="gi">+         return new Response(&quot;Olá, $name!&quot;);</span>
+    }
+}
+</pre></div>
+</td></tr></table></div></div>
+<p>Teste a página acessando <code class="docutils literal notranslate">http://localhost:8000/hello/Symfony</code>. Você deve
+ver: Olá, Symfony! O valor do <code class="docutils literal notranslate">{name}</code> no URL está disponível como um argumento <code class="docutils literal notranslate">$name</code>
+no seu controller.</p>
+<p>Mas isso pode ser ainda mais simples! Então vamos instalar o suporte a anotações:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> composer require annotations
+</pre></div>
+</td></tr></table></div></div>
+<p>Agora, comente a rota YAML adicionando o caractere <code class="docutils literal notranslate">#</code>:</p>
+<div class="literal-block"><div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># config/routes.yaml</span>
+<span class="c1"># index:</span>
+<span class="c1">#     path: /hello/{name}</span>
+<span class="c1">#     controller: &#39;App\Controller\DefaultController::index&#39;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Em vez disso, adicione a rota <em>logo acima</em> do método do controller:</p>
+<div class="literal-block"><div class="highlight-diff"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span>// src/Controller/DefaultController.php
+namespace App\Controller;
+
+use Symfony\Component\HttpFoundation\Response;
+<span class="gi">+ use Symfony\Component\Routing\Annotation\Route;</span>
+
+class DefaultController
+{
+<span class="gi">+    /**</span>
+<span class="gi">+     * @Route(&quot;/hello/{name}&quot;)</span>
+<span class="gi">+     */</span>
+     public function index($name) {
+         // ...
+     }
+}
+</pre></div>
+</td></tr></table></div></div>
+<p>Isso funciona exatamente como antes! Mas ao usar anotações, a rota e o controller
+ficam próximos um do outro. Precisa de outra página? Adicione outra rota e método
+no <code class="docutils literal notranslate">DefaultController</code>:</p>
+<div class="literal-block"><div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// src/Controller/DefaultController.php</span>
+<span class="k">namespace</span> <span class="nx">App\Controller</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Symfony\Component\HttpFoundation\Response</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\Routing\Annotation\Route</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">DefaultController</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @Route(&quot;/simplicity&quot;)</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">simple</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span><span class="s1">&#39;Simples! Fácil! Ótimo!&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>O roteamento pode fazer <em>ainda</em> mais, mas guardaremos isso para outra hora! No momento nossa
+aplicação precisa de mais recursos! Como um mecanismo de template, ferramentas de logging, ferramentas de depuração e muito mais.</p>
+<p>Continue lendo com <a class="reference internal" href="flex_recipes.html"><em>Flex: Componha sua Aplicação</em></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="flex_recipes.html" class="btn btn-neutral float-right" title="Flex: Componha sua Aplicação" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="O Tour Rápido" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'pt_BR',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

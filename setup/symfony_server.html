@@ -1,0 +1,675 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="pt-BR" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="pt-BR" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Servidor Web Local do Symfony &mdash; Documentação do Symfony  documentação</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="next" title="Enviando E-mails com o Mailer" href="../mailer.html" />
+    <link rel="prev" title="Crie sua Primeira Página no Symfony" href="../page_creation.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Documentação do Symfony
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick_tour/index.html">O Tour Rápido</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Começando</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../mailer.html">Enviando E-mails com o Mailer</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../setup.html">Instalando e Configurando o Symfony Framework</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../setup.html#requisitos-tecnicos">Requisitos Técnicos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html#criando-aplicacoes-symfony">Criando Aplicações Symfony</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html#executando-aplicacoes-symfony">Executando Aplicações Symfony</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html#configurando-um-projeto-symfony-existente">Configurando um Projeto Symfony Existente</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html#instalando-pacotes">Instalando Pacotes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html#verificando-vulnerabilidades-de-seguranca">Verificando Vulnerabilidades de Segurança</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html#versoes-lts-do-symfony">Versões LTS do Symfony</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html#a-aplicacao-symfony-demo">A Aplicação Symfony Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html#comece-a-codar">Comece a Codar!</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../setup.html#aprenda-mais">Aprenda Mais</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../page_creation.html">Crie sua Primeira Página no Symfony</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">Servidor Web Local do Symfony</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#instalacao">Instalação</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#comecando">Começando</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ativando-tls">Ativando TLS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuracoes-php-diferentes-por-projeto">Configurações PHP Diferentes por Projeto</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nomes-de-dominio-local">Nomes de Domínio Local</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#comandos-de-longa-duracao">Comandos de Longa Duração</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#integracao-docker">Integração Docker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#integracao-com-symfonycloud">Integração com SymfonyCloud</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recursos-bonus">Recursos Bônus</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../components/index.html">Os Componentes</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Documentos de Referência</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../create_framework/index.html">Crie seu próprio Framework PHP</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Documentação do Symfony</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../getting_started/index.html">Começando</a> &raquo;</li>
+        
+          <li><a href="../setup.html">Instalando e Configurando o Symfony Framework</a> &raquo;</li>
+        
+      <li>Servidor Web Local do Symfony</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/adielcristo/symfony-doc-pt-br/blob/5.0/setup/symfony_server.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="servidor-web-local-do-symfony">
+<h1>Servidor Web Local do Symfony<a class="headerlink" href="#servidor-web-local-do-symfony" title="Link permanente para este título">¶</a></h1>
+<p>Você pode executar aplicações Symfony usando qualquer servidor web (Apache, nginx, o
+servidor web interno do PHP, etc.). No entanto, o Symfony fornece seu próprio servidor web
+para tornar ainda mais produtivo desenvolver suas aplicações.</p>
+<p>Embora esse servidor não seja destinado ao uso em produção, ele suporta HTTP/2,
+TLS/SSL, geração automática de certificados de segurança, domínios locais, e muitos
+outros recursos que, mais cedo ou mais tarde, serão necessários ao desenvolver projetos web.
+Além disso, o servidor não está ligado ao Symfony e você também pode usá-lo com qualquer
+outra aplicação PHP e até mesmo com HTML/SPA (aplicações de uma única página).</p>
+<div class="section" id="instalacao">
+<h2>Instalação<a class="headerlink" href="#instalacao" title="Link permanente para este título">¶</a></h2>
+<p>O servidor Symfony é distribuído como um binário instalável gratuito, sem qualquer
+dependência, e possui suporte para Linux, macOS e Windows. Acesse <a class="reference external" href="https://symfony.com/download">symfony.com/download</a>
+e siga as instruções para o seu sistema operacional.</p>
+<div class="admonition-wrapper">
+<div class="admonition note"><p class="first admonition-title">Nota</p>
+<p class="last">Se você quiser reportar um erro ou sugerir um novo recurso, crie um issue
+em <a class="reference external" href="https://github.com/symfony/cli">symfony/cli</a>.</p>
+</div></div>
+</div>
+<div class="section" id="comecando">
+<h2>Começando<a class="headerlink" href="#comecando" title="Link permanente para este título">¶</a></h2>
+<p>O servidor Symfony é iniciado uma vez por projeto, logo, você poderá ter
+várias instâncias (cada uma delas ouvindo uma porta diferente). Este é o
+fluxo de trabalho comum para executar um projeto Symfony:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> my-project/
+<span class="gp">$</span> symfony server:start
+
+<span class="go">  [OK] Web server listening on http://127.0.0.1:....</span>
+<span class="go">  ...</span>
+
+<span class="c1"># Agora, navegue na URL fornecida, ou execute este comando:</span>
+<span class="gp">$</span> symfony open:local
+</pre></div>
+</td></tr></table></div></div>
+<p>Executar o servidor dessa forma faz com que ele exiba as mensagens de log no console,
+logo você não poderá executar outros comandos ao mesmo tempo. Se preferir, você pode
+executar o servidor Symfony em segundo plano:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> my-project/
+
+<span class="c1"># inicia o servidor em background</span>
+<span class="gp">$</span> symfony server:start -d
+
+<span class="c1"># continua trabalhando e executando outros comandos...</span>
+
+<span class="c1"># exibe as últimas mensagens de log</span>
+<span class="gp">$</span> symfony server:log
+</pre></div>
+</td></tr></table></div></div>
+</div>
+<div class="section" id="ativando-tls">
+<h2>Ativando TLS<a class="headerlink" href="#ativando-tls" title="Link permanente para este título">¶</a></h2>
+<p>Navegar localmente na versão segura das suas aplicações é importante para poder detectar no início
+problemas com conteúdo misto, e para poder executar bibliotecas que só rodam com HTTPS.
+Tradicionalmente, isso tem sido doloroso e complicado de configurar, mas o servidor Symfony
+automatiza tudo. Primeiro, execute este comando:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> symfony server:ca:install
+</pre></div>
+</td></tr></table></div></div>
+<p>Esse comando cria uma autoridade de certificação local, registra-a em seu sistema de
+armazenamento confiável, registra-a no Firefox (isso é necessário apenas para esse navegador)
+e cria um certificado padrão para <code class="docutils literal notranslate">localhost</code> e <code class="docutils literal notranslate">127.0.0.1</code>. Em outras
+palavras, faz tudo por você.</p>
+<p>Antes de navegar na sua aplicação local com HTTPS em vez de HTTP, reinicie seu
+servidor parando-o e iniciando-o novamente.</p>
+</div>
+<div class="section" id="configuracoes-php-diferentes-por-projeto">
+<h2>Configurações PHP Diferentes por Projeto<a class="headerlink" href="#configuracoes-php-diferentes-por-projeto" title="Link permanente para este título">¶</a></h2>
+<div class="section" id="selecionando-uma-versao-diferente-do-php">
+<h3>Selecionando uma Versão Diferente do PHP<a class="headerlink" href="#selecionando-uma-versao-diferente-do-php" title="Link permanente para este título">¶</a></h3>
+<p>Se você tem várias versões do PHP instaladas em seu computador, você pode dizer
+ao Symfony qual delas usar, criando um arquivo chamado <code class="docutils literal notranslate">.php-version</code> no
+diretório raiz do projeto:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> my-project/
+
+<span class="c1"># use a specific PHP version</span>
+<span class="gp">$</span> <span class="nb">echo</span> <span class="s2">&quot;7.2&quot;</span> &gt; .php-version
+
+<span class="c1"># use any PHP 7.x version available</span>
+<span class="gp">$</span> <span class="nb">echo</span> <span class="s2">&quot;7&quot;</span> &gt; .php-version
+</pre></div>
+</td></tr></table></div></div>
+<div class="admonition-wrapper">
+<div class="admonition tip"><p class="first admonition-title">Dica</p>
+<p class="last">O servidor Symfony atravessa a estrutura de diretórios até o diretório
+raiz, então, você pode criar um arquivo <code class="docutils literal notranslate">.php-version</code> em algum diretório
+pai para definir a mesma versão do PHP para um grupo de projetos sob esse
+diretório.</p>
+</div></div>
+<p>Execute o comando abaixo se você não se lembrar de todas as versões do PHP instaladas no seu
+computador:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> symfony local:php:list
+
+<span class="go">  # Você verá todos os SAPIs suportados (CGI, FastCGI, etc.) para cada versão.</span>
+<span class="go">  # FastCGI (php-fpm) é usado quando possível; então CGI (que atua como um servidor</span>
+<span class="go">  # FastCGI também) e, finalmente, o servidor retorna ao CGI simples.</span>
+</pre></div>
+</td></tr></table></div></div>
+</div>
+<div class="section" id="sobrescrevendo-opcoes-de-configuracao-do-php-por-projeto">
+<h3>Sobrescrevendo Opções de Configuração do PHP por Projeto<a class="headerlink" href="#sobrescrevendo-opcoes-de-configuracao-do-php-por-projeto" title="Link permanente para este título">¶</a></h3>
+<p>Você pode alterar o valor de qualquer opção de configuração runtime do PHP por projeto, criando um
+arquivo chamado <code class="docutils literal notranslate">php.ini</code> no diretório raiz do projeto. Adicione apenas as opções que você deseja
+sobrescrever:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> my-project/
+
+<span class="c1"># this project only overrides the default PHP timezone</span>
+<span class="gp">$</span> cat php.ini
+<span class="go">[Date]</span>
+<span class="go">date.timezone = Asia/Tokyo</span>
+</pre></div>
+</td></tr></table></div></div>
+</div>
+<div class="section" id="executando-comandos-com-versoes-diferentes-do-php">
+<h3>Executando Comandos com Versões Diferentes do PHP<a class="headerlink" href="#executando-comandos-com-versoes-diferentes-do-php" title="Link permanente para este título">¶</a></h3>
+<p>Ao executar versões diferentes do PHP, é útil usar o comando principal <code class="docutils literal notranslate">symfony</code>
+como um wrapper para o comando <code class="docutils literal notranslate">php</code>. Isso permite que você sempre selecione
+a versão mais apropriada do PHP de acordo com o projeto que está executando os
+comandos. E também carrega as variáveis env automaticamente, que é importante ao
+executar comandos que não são do Symfony:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># runs the command with the default PHP version</span>
+<span class="gp">$</span> php -r <span class="s2">&quot;...&quot;</span>
+
+<span class="c1"># runs the command with the PHP version selected by the project</span>
+<span class="c1"># (or the default PHP version if the project didn&#39;t select one)</span>
+<span class="gp">$</span> symfony php -r <span class="s2">&quot;...&quot;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Se você está usando esse wrapper com freqüência, considere criar um alias no comando <code class="docutils literal notranslate">php</code>
+para isso:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> ~/.symfony/bin
+<span class="gp">$</span> cp symfony php
+<span class="c1"># agora você pode executar &quot;php ...&quot; e o comando &quot;symfony&quot; será executado ao invés dele</span>
+
+<span class="c1"># pode ser usado o wrapper para outros comandos PHP também usando esse truque</span>
+<span class="gp">$</span> cp symfony php-config
+<span class="gp">$</span> cp symfony pear
+<span class="gp">$</span> cp symfony pecl
+</pre></div>
+</td></tr></table></div></div>
+</div>
+</div>
+<div class="section" id="nomes-de-dominio-local">
+<h2>Nomes de Domínio Local<a class="headerlink" href="#nomes-de-dominio-local" title="Link permanente para este título">¶</a></h2>
+<p>Por padrão, os projetos são acessíveis em alguma porta aleatória do IP local
+<code class="docutils literal notranslate">127.0.0.1</code>. No entanto, às vezes é preferível associar um nome de domínio a eles:</p>
+<ul class="simple">
+<li>É mais conveniente quando você trabalha continuamente no mesmo projeto porque
+números de porta podem mudar, mas os domínios não;</li>
+<li>O comportamento de algumas aplicações depende de seus domínios/subdomínios;</li>
+<li>Para ter endpoints estáveis, como a URL de redirecionamento local para OAuth2.</li>
+</ul>
+<div class="section" id="configurando-o-proxy-local">
+<h3>Configurando o Proxy Local<a class="headerlink" href="#configurando-o-proxy-local" title="Link permanente para este título">¶</a></h3>
+<p>Domínios locais são possíveis graças a um proxy local fornecido pelo servidor
+Symfony. Primeiro, inicie o proxy:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> symfony proxy:start
+</pre></div>
+</td></tr></table></div></div>
+<p>Se esta for a primeira vez que você executa o proxy, siga estas etapas adicionais:</p>
+<ul class="simple">
+<li>Abra a <strong>configuração de rede</strong> do seu sistema operacional;</li>
+<li>Encontre as <strong>configurações de proxy</strong> e selecione <strong>&quot;Configuração de Proxy Automática&quot;</strong>;</li>
+<li>Defina a seguinte URL como seu valor: <code class="docutils literal notranslate">http://127.0.0.1:7080/proxy.pac</code></li>
+</ul>
+</div>
+<div class="section" id="definindo-o-dominio-local">
+<h3>Definindo o Domínio Local<a class="headerlink" href="#definindo-o-dominio-local" title="Link permanente para este título">¶</a></h3>
+<p>Por padrão, o Symfony propõe <code class="docutils literal notranslate">.wip</code> (para <em>Work in Progress</em>) para os domínios
+locais. Você pode definir um domínio local para o seu projeto da seguinte forma:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> my-project/
+<span class="gp">$</span> symfony proxy:domain:attach my-domain
+</pre></div>
+</td></tr></table></div></div>
+<p>Se você instalou o proxy local conforme explicado na seção anterior, você
+agora pode navegar <code class="docutils literal notranslate">https://my-domain.wip</code> para acessar seu projeto local com o
+novo domínio personalizado.</p>
+<div class="admonition-wrapper">
+<div class="admonition tip"><p class="first admonition-title">Dica</p>
+<p class="last">Navegue na URL <a class="reference external" href="http://127.0.0.1:7080">http://127.0.0.1:7080</a> para obter a lista completa de diretórios dos projetos
+locais, seus domínios personalizados, e números de porta.</p>
+</div></div>
+<p>Ao executar comandos do console, adicione a variável env <code class="docutils literal notranslate">HTTPS_PROXY</code> para que os
+domínios personalizados funcionem:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nv">HTTPS_PROXY</span><span class="o">=</span>http://127.0.0.1:7080 curl https://my-domain.wip
+</pre></div>
+</td></tr></table></div></div>
+<div class="admonition-wrapper">
+<div class="admonition tip"><p class="first admonition-title">Dica</p>
+<p class="last">Se você preferir usar um TLD diferente, edite o arquivo <code class="docutils literal notranslate">~/.symfony/proxy.json</code>
+(onde <code class="docutils literal notranslate">~</code> significa o caminho para o seu diretório de usuário) e altere o
+valor da opção <code class="docutils literal notranslate">tld</code> de <code class="docutils literal notranslate">wip</code> para qualquer outro TLD.</p>
+</div></div>
+</div>
+</div>
+<div class="section" id="comandos-de-longa-duracao">
+<h2>Comandos de Longa Duração<a class="headerlink" href="#comandos-de-longa-duracao" title="Link permanente para este título">¶</a></h2>
+<p>Comandos de longa duração, como os que compilam ativos web do front-end, bloqueiam
+o terminal e você não pode executar outros comandos ao mesmo tempo. O servidor do
+Symfony fornece um comando <code class="docutils literal notranslate">run</code> para envolvê-los da seguinte maneira:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># compila assets Webpack usando o Symfony Encore ... mas faz isso</span>
+<span class="c1"># em background para não bloquear o terminal</span>
+<span class="gp">$</span> symfony run -d yarn encore dev --watch
+
+<span class="c1"># continua trabalhando e executando outros comandos...</span>
+
+<span class="c1"># de tempo em tempo, verifique os logs do comando se você desejar</span>
+<span class="gp">$</span> symfony server:log
+
+<span class="c1"># e você também pode verificar se o comando ainda está em execução</span>
+<span class="gp">$</span> symfony server:status
+<span class="go">Web server listening on ...</span>
+<span class="go">Command &quot;yarn ...&quot; running with PID ...</span>
+
+<span class="c1"># parar o servidor web (e todos os comandos associados) quando tiver terminado</span>
+<span class="gp">$</span> symfony server:stop
+</pre></div>
+</td></tr></table></div></div>
+</div>
+<div class="section" id="integracao-docker">
+<h2>Integração Docker<a class="headerlink" href="#integracao-docker" title="Link permanente para este título">¶</a></h2>
+<p>O servidor local do Symfony fornece integração completa com <a class="reference external" href="https://en.wikipedia.org/wiki/Docker_(software)">Docker</a> para projetos que
+utilizam ele. Primeiro, certifique-se de expor as portas do contêiner:</p>
+<div class="literal-block"><div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># docker-compose.override.yaml</span>
+<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">database</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="s">&quot;3306&quot;</span>
+
+    <span class="l l-Scalar l-Scalar-Plain">redis</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="s">&quot;6379&quot;</span>
+
+    <span class="c1"># ...</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Em seguida, verifique seus nomes de serviço e atualize-os, se necessário (o Symfony cria
+variáveis de ambiente seguindo o nome dos serviços, para que possam ser
+autoconfigurados):</p>
+<div class="literal-block"><div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># docker-compose.yaml</span>
+<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+    <span class="c1"># DATABASE_URL</span>
+    <span class="l l-Scalar l-Scalar-Plain">database</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># MONGODB_DATABASE, MONGODB_SERVER</span>
+    <span class="l l-Scalar l-Scalar-Plain">mongodb</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># REDIS_URL</span>
+    <span class="l l-Scalar l-Scalar-Plain">redis</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># ELASTISEARCH_HOST, ELASTICSEARCH_PORT</span>
+    <span class="l l-Scalar l-Scalar-Plain">elasticsearch</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># RABBITMQ_DSN</span>
+    <span class="l l-Scalar l-Scalar-Plain">rabbitmq</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Se o seu arquivo <code class="docutils literal notranslate">docker-compose.yaml</code> não usa os nomes das variáveis de ambiente
+esperadas pelo Symfony (por exemplo, você usa <code class="docutils literal notranslate">MYSQL_URL</code> em vez de <code class="docutils literal notranslate">DATABASE_URL</code>)
+então, você precisa renomear todas as ocorrências dessas variáveis de ambiente em sua
+aplicação Symfony. Uma alternativa mais simples é usar o arquivo <code class="docutils literal notranslate">.env.local</code> para
+reatribuir as variáveis de ambiente:</p>
+<div class="literal-block"><div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># .env.local</span>
+<span class="nv">DATABASE_URL</span><span class="o">=</span><span class="si">${</span><span class="nv">MYSQL_URL</span><span class="si">}</span>
+<span class="c1"># ...</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Agora você pode iniciar os contêineres e todos os seus serviços serão expostos. Navegue
+para qualquer página da sua aplicação e verifique a seção &quot;Servidor Symfony&quot; na
+barra de ferramentas de depuração web. Você verá que &quot;Docker Compose&quot; está &quot;Up&quot;.</p>
+</div>
+<div class="section" id="integracao-com-symfonycloud">
+<h2>Integração com SymfonyCloud<a class="headerlink" href="#integracao-com-symfonycloud" title="Link permanente para este título">¶</a></h2>
+<p>O servidor local do Symfony fornece integração completa, mas opcional, com
+<a class="reference external" href="https://symfony.com/cloud/">SymfonyCloud</a>, um serviço otimizado para executar suas aplicações Symfony na
+nuvem. Ele fornece recursos como criação de ambientes, backups/snapshots,
+e até mesmo acesso a uma cópia dos dados de produção de sua máquina local para ajudar
+a depurar quaisquer problemas.</p>
+<p><a class="reference external" href="https://symfony.com/doc/master/cloud/intro.html">Leia os documentos técnicos do SymfonyCloud</a>.</p>
+</div>
+<div class="section" id="recursos-bonus">
+<h2>Recursos Bônus<a class="headerlink" href="#recursos-bonus" title="Link permanente para este título">¶</a></h2>
+<p>Além de ser um servidor web local, o servidor Symfony fornece outros
+recursos úteis:</p>
+<div class="section" id="procurando-vulnerabilidades-de-seguranca">
+<h3>Procurando Vulnerabilidades de Segurança<a class="headerlink" href="#procurando-vulnerabilidades-de-seguranca" title="Link permanente para este título">¶</a></h3>
+<p>Em vez de instalar o <code class="xref doc docutils literal notranslate">Verificador de Segurança do Symfony</code>
+como uma dependência em seus projetos, você pode executar o seguinte comando:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">$</span> symfony security:check
+</pre></div>
+</td></tr></table></div></div>
+<p>Esse comando usa o mesmo banco de dados de vulnerabilidades que o Verificador de
+Segurança do Symfony, mas não faz chamadas HTTP para o endpoint oficial da API. Tudo
+(exceto clonar o banco de dados público) é feito localmente, o que é melhor para cenários
+de CI (<em>integração contínua</em>).</p>
+</div>
+<div class="section" id="criando-projetos-symfony">
+<h3>Criando Projetos Symfony<a class="headerlink" href="#criando-projetos-symfony" title="Link permanente para este título">¶</a></h3>
+<p>Além das <a class="reference external" href="https://symfony.com/download">formas diferentes de instalar o Symfony</a>, você pode usar estes
+comandos do servidor Symfony:</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># cria um novo projeto baseado em symfony/skeleton</span>
+<span class="gp">$</span> symfony new my_project_name
+
+<span class="c1"># cria um novo projeto baseado em symfony/website-skeleton</span>
+<span class="gp">$</span> symfony new --full my_project_name
+
+<span class="c1"># cria um novo projeto baseado em symfony/demo</span>
+<span class="gp">$</span> symfony new --demo my_project_name
+</pre></div>
+</td></tr></table></div></div>
+<p>Você pode criar um projeto dependendo de uma versão de <strong>desenvolvimento</strong> também (note
+que o Composer também irá configurar a estabilidade para <code class="docutils literal notranslate">dev</code> para todas as dependências root):</p>
+<div class="literal-block"><div class="highlight-terminal"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># cria um novo projeto baseado na branch master do Symfony</span>
+<span class="gp">$</span> symfony new --version<span class="o">=</span>dev-master my_project_name
+
+<span class="c1"># cria um novo projeto baseado na branch 4.3 dev do Symfony</span>
+<span class="gp">$</span> symfony new --version<span class="o">=</span><span class="m">4</span>.3.x-dev my_project_name
+</pre></div>
+</td></tr></table></div></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../mailer.html" class="btn btn-neutral float-right" title="Enviando E-mails com o Mailer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../page_creation.html" class="btn btn-neutral" title="Crie sua Primeira Página no Symfony" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'pt_BR',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
