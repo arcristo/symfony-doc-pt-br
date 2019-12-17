@@ -41,7 +41,7 @@ aplicação Symfony:
 
 Já podemos carregar o projeto em um navegador? Sim! Você pode configurar
 :doc:`o Nginx ou o Apache </setup/web_server_configuration>` e configurar o
-diretório público (document root) para ser o diretório ``public/``. Mas, para desenvolvimento, é melhor
+diretório público como o diretório ``public/``. Mas, para desenvolvimento, é melhor
 :doc:`instalar o servidor web local Symfony </setup/symfony_server>` e executá-lo
 da seguinte maneira:
 
@@ -78,7 +78,7 @@ a *função* que será chamada sempre que alguém acessar esse URL. Essa funçã
 não existe ainda, então vamos criá-la!
 
 Em ``src/Controller``, crie uma nova classe ``DefaultController`` e um método ``index``
-dentro::
+dentro dela::
 
     // src/Controller/DefaultController.php
     namespace App\Controller;
