@@ -81,8 +81,8 @@ Criando Rotas em Arquivos YAML, XML ou PHP
 
 Em vez de definir rotas nas classes controlador, você pode defini-las em um
 arquivo YAML, XML ou PHP separado. A principal vantagem é que eles não exigem
-nenhuma dependência extra. A principal desvantagem é que você precisa trabalhar com vários
-arquivos ao verificar o roteamento de alguma ação do controlador.
+nenhuma dependência extra. A principal desvantagem é que você precisa trabalhar
+com vários arquivos ao verificar o roteamento de alguma ação do controlador.
 
 O exemplo a seguir mostra como definir em YAML/XML/PHP uma rota chamada
 ``blog_list`` que associa o URL ``/blog`` à ação ``list()`` do controlador
@@ -234,8 +234,8 @@ Use a opção ``methods`` para restringir os verbos aos quais cada rota deve res
 Correspondendo a Expressões
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use a opção ``condition`` se você precisa que alguma rota combine com base em alguma
-lógica de combinação arbitrária:
+Use a opção ``condition`` se você precisa que alguma rota corresponda com base
+em alguma lógica de correspondência arbitrária:
 
 .. configuration-block::
 
@@ -308,11 +308,11 @@ lógica de combinação arbitrária:
 
 O valor da opção ``condition`` é qualquer
 :doc:`expressão ExpressionLanguage </components/expression_language/syntax>`
-válida e pode usar qualquer uma dessas variáveis criadas pelo Symfony:
+válida e pode usar qualquer uma destas variáveis criadas pelo Symfony:
 
 ``context``
     Uma instância de :class:`Symfony\\Component\\Routing\\RequestContext`,
-    que contém as informações mais fundamentais sobre a rota que está sendo combinada.
+    que contém as informações mais fundamentais sobre a rota que está sendo correspondida.
 
 ``request``
     O objeto :ref:`Symfony Request <component-http-foundation-request>` que
@@ -330,7 +330,7 @@ para executar o PHP resultante.
 Depurando Rotas
 ~~~~~~~~~~~~~~~
 
-À medida que sua aplicação cresce, você eventualmente terá *muitas* rotas. O Symfony
+À medida que sua aplicação cresce, você acabará tendo *muitas* rotas. O Symfony
 inclui alguns comandos para te ajudar a depurar problemas de roteamento. Primeiro, o comando
 ``debug:router`` lista todas as rotas da sua aplicação na mesma ordem em que o Symfony
 as avalia:
@@ -367,8 +367,8 @@ detalhes da rota:
     |             | utf8: true                                              |
     +-------------+---------------------------------------------------------+
 
-O outro comando é chamado ``router:match`` e mostra qual rota irá combinar
-com o URL dado. Ele é útil para descobrir por que algum URL não está executando a
+O outro comando é chamado ``router:match`` e mostra qual rota irá corresponder
+ao URL dado. Ele é útil para descobrir por que algum URL não está executando a
 ação do controlador que você espera:
 
 .. code-block:: terminal
