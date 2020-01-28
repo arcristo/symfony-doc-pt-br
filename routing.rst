@@ -380,14 +380,14 @@ ação do controlador que você espera:
 Parâmetros da Rota
 ------------------
 
-The previous examples defined routes where the URL never changes (e.g. ``/blog``).
-However, it's common to define routes where some parts are variable. For example,
-the URL to display some blog post will probably include the title or slug
-(e.g. ``/blog/my-first-post`` or ``/blog/all-about-symfony``).
+Os exemplos anteriores definiram rotas nas quais o URL nunca muda (por exemplo, ``/blog``).
+No entanto, é comum definir rotas nas quais algumas partes são variáveis. Por exemplo,
+o URL para exibir um post do blog provavelmente incluirá o título ou o slug
+(por exemplo, ``/blog/my-first-post`` ou ``/blog/all-about-symfony``).
 
-In Symfony routes, variable parts are wrapped in ``{ ... }`` and they must have
-a unique name. For example, the route to display the blog post contents is
-defined as ``/blog/{slug}``:
+Nas rotas do Symfony, as partes variáveis são agrupadas em ``{ ... }`` e devem ter
+um nome único. Por exemplo, a rota para exibir o conteúdo do post do blog é
+definida como ``/blog/{slug}``:
 
 .. configuration-block::
 
@@ -408,8 +408,8 @@ defined as ``/blog/{slug}``:
              */
             public function show(string $slug)
             {
-                // $slug will equal the dynamic part of the URL
-                // e.g. at /blog/yay-routing, then $slug='yay-routing'
+                // $slug será igual à parte dinâmica do URL
+                // por exemplo, em /blog/yay-routing, $slug='yay-routing'
 
                 // ...
             }
@@ -447,19 +447,19 @@ defined as ``/blog/{slug}``:
             ;
         };
 
-The name of the variable part (``{slug}`` in this example) is used to create a
-PHP variable where that route content is stored and passed to the controller.
-If a user visits the ``/blog/my-first-post`` URL, Symfony executes the ``show()``
-method in the ``BlogController`` class and passes a ``$slug = 'my-first-post'``
-argument to the ``show()`` method.
+O nome da parte variável (``{slug}`` nesse exemplo) é usado para criar uma
+variável PHP na qual o conteúdo da rota é armazenado e passado ao controlador.
+Se um usuário visita o URL ``/blog/my-first-post``, o Symfony executa o método
+``show()`` na classe ``BlogController`` e passa um argumento
+``$slug = 'my-first-post'`` para o método ``show()``.
 
-Routes can define any number of parameters, but each of them can only be used
-once on each route (e.g. ``/blog/posts-about-{category}/page/{pageNumber}``).
+Rotas podem definir qualquer número de parâmetros, mas cada um deles pode ser usado apenas
+uma vez em cada rota (por exemplo, ``/blog/posts-about-{category}/page/{pageNumber}``).
 
 .. _routing-requirements:
 
-Parameters Validation
-~~~~~~~~~~~~~~~~~~~~~
+Validação de Parâmetros
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Imagine that your application has a ``blog_show`` route (URL: ``/blog/{slug}``)
 and a ``blog_list`` route (URL: ``/blog/{page}``). Given that route parameters
