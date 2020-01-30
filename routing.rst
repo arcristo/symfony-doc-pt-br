@@ -461,13 +461,13 @@ uma vez em cada rota (por exemplo, ``/blog/posts-about-{category}/page/{pageNumb
 Validação de Parâmetros
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Imagine that your application has a ``blog_show`` route (URL: ``/blog/{slug}``)
-and a ``blog_list`` route (URL: ``/blog/{page}``). Given that route parameters
-accept any value, there's no way to differentiate both routes.
+Imagine que sua aplicação tenha uma rota ``blog_show`` (URL: ``/blog/{slug}``)
+e uma rota ``blog_list`` (URL: ``/blog/{page}``). Como os parâmetros das rotas
+aceitam qualquer valor, não há como diferenciar as duas rotas.
 
-If the user requests ``/blog/my-first-post``, both routes will match and Symfony
-will use the route which was defined first. To fix this, add some validation to
-the ``{page}`` parameter using the ``requirements`` option:
+Se o usuário requisitar ``/blog/my-first-post``, as duas rotas corresponderão e o Symfony
+usará a rota que foi definida primeiro. Para corrigir isso, adicione alguma validação ao
+parâmetro ``{page}`` usando a opção ``requirements``:
 
 .. configuration-block::
 
@@ -546,9 +546,9 @@ the ``{page}`` parameter using the ``requirements`` option:
             // ...
         };
 
-The ``requirements`` option defines the `PHP regular expressions`_ that route
-parameters must match for the entire route to match. In this example, ``\d+`` is
-a regular expression that matches a *digit* of any length. Now:
+A opção ``requirements`` define as `expressões regulares PHP`_ que os parâmetros
+da rota devem corresponder para que toda a rota corresponda. Nesse exemplo, ``\d+`` é
+uma expressão regular que corresponde a *dígitos* de qualquer tamanho. Agora:
 
 ========================  =============  ===============================
 URL                       Route          Parameters
@@ -559,26 +559,26 @@ URL                       Route          Parameters
 
 .. tip::
 
-    Route requirements (and route paths too) can include
-    :ref:`container parameters <configuration-parameters>`, which is useful to
-    define complex regular expressions once and reuse them in multiple routes.
+    Os requisitos de rota (e também os caminhos de rota) podem incluir
+    :ref:`parâmetros do container <configuration-parameters>`, o que é útil para
+    definir expressões regulares complexas uma vez e reusá-las em várias rotas.
 
 .. tip::
 
-    Parameters also support `PCRE Unicode properties`_, which are escape
-    sequences that match generic character types. For example, ``\p{Lu}``
-    matches any uppercase character in any language, ``\p{Greek}`` matches any
-    Greek character, etc.
+    Os parâmetros também suportam `propriedades Unicode da PCRE`_, que são sequências
+    de escape que correspondem a tipos de caracteres genéricos. Por exemplo, ``\p{Lu}``
+    corresponde a qualquer caractere maiúsculo em qualquer idioma, ``\p{Greek}``
+    corresponde a qualquer caractere grego, etc.
 
 .. note::
 
-    When using regular expressions in route parameters, you can set the ``utf8``
-    route option to ``true`` to make any ``.`` character match any UTF-8
-    characters instead of just a single byte.
+    Ao usar expressões regulares nos parâmetros de rota, você pode definir a opção
+    de rota ``utf8`` como ``true`` para fazer qualquer caractere ``.`` corresponder a
+    quaisquer caracteres UTF-8 em vez de apenas um byte.
 
-If you prefer, requirements can be inlined in each parameter using the syntax
-``{parameter_name<requirements>}``. This feature makes configuration more
-concise, but it can decrease route readability when requirements are complex:
+Se preferir, os requisitos podem ser incorporados em cada parâmetro usando a sintaxe
+``{nome_do_parametro<requisitos>}``. Esse recurso torna a configuração mais concisa,
+mas pode diminuir a legibilidade da rota quando os requisitos são complexos:
 
 .. configuration-block::
 
@@ -2212,7 +2212,7 @@ Learn more about Routing
 
     routing/*
 
-.. _`PHP regular expressions`: https://www.php.net/manual/en/book.pcre.php
-.. _`PCRE Unicode properties`: http://php.net/manual/en/regexp.reference.unicode.php
+.. _`expressões regulares PHP`: https://www.php.net/manual/en/book.pcre.php
+.. _`propriedades Unicode da PCRE`: http://php.net/manual/en/regexp.reference.unicode.php
 .. _`full param converter documentation`: https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html
 .. _`FOSJsRoutingBundle`: https://github.com/FriendsOfSymfony/FOSJsRoutingBundle
